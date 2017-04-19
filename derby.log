@@ -1,0 +1,25 @@
+Wed Apr 19 13:02:42 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Wed Apr 19 13:02:42 EEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-85a9-fff9-000006876ae6 
+on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
+Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_21-b11
+user.dir=C:\Program Files\glassfish-4.0\javadb
+derby.system.home=P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Apr 19 13:02:46 EEST 2017:
+Shutting down instance a816c00e-015b-85a9-fff9-000006876ae6 on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5\Vaali-Db with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
+Wed Apr 19 13:02:46 EEST 2017 Thread[DRDAConnThread_4,5,main] (DATABASE = Vaali-Db), (DRDAID = {2}), Database 'Vaali-Db' shutdown.
+----------------------------------------------------------------
+Wed Apr 19 13:02:57 EEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance 45b300a8-015b-85a9-fff9-000006876ae6 
+on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
+Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_21-b11
+user.dir=C:\Program Files\glassfish-4.0\javadb
+derby.system.home=P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5
+Database Class Loader started - derby.database.classpath=''
