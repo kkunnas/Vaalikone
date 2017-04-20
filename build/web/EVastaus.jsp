@@ -1,9 +1,11 @@
 <%-- 
-    Document   : vastaus
-    Created on : 09-Apr-2015, 12:50:47
-    Author     : Jonne
+    Document   : EVastaus
+    Created on : Apr 20, 2017, 1:30:25 PM
+    Author     : karoliina1506
 --%>
 
+<%@page import="javax.persistence.EntityManager"%>
+<%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*,vaalikone.Vaalikone,persist.*"%>
 <!doctype html>
@@ -20,14 +22,13 @@
         <div id="container">
             <img id="headerimg" src="images/Logo.png" width="500" height="144" alt=""/>
 
-
-
-            <%
+        <%
                 @SuppressWarnings("unchecked")
                 List<Kysymykset> kysymykset = (List<Kysymykset>) request.getAttribute("kysymykset");
-     for (Kysymykset kysymys : kysymykset) {%>
-
+                for (Kysymykset kysymys : kysymykset) { %>
             <div class="kysymys">
+                <p>Ehdokkaalle..</p> 
+                
                 <%= kysymys.getKysymysId()%> / 19 <br>
                 <%= kysymys.getKysymys()%>
             </div>
@@ -45,10 +46,6 @@
             <%
                 }
             %>
-
-
-
-
         </div>
 
     </body>

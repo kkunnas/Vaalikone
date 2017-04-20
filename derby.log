@@ -1,25 +1,30 @@
-Wed Apr 19 13:02:42 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Wed Apr 19 13:25:59 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Wed Apr 19 13:02:42 EEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-85a9-fff9-000006876ae6 
-on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
+Wed Apr 19 13:25:59 EEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-85bf-5055-ffffaa58e819 
+on database directory P:\Ohjelmistokehitys\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1174ec5 
 Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_21-b11
+java.runtime.version=1.7.0_45-b18
 user.dir=C:\Program Files\glassfish-4.0\javadb
-derby.system.home=P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5
+derby.system.home=P:\Ohjelmistokehitys\vaalikone
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Wed Apr 19 13:02:46 EEST 2017:
-Shutting down instance a816c00e-015b-85a9-fff9-000006876ae6 on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5\Vaali-Db with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
-Wed Apr 19 13:02:46 EEST 2017 Thread[DRDAConnThread_4,5,main] (DATABASE = Vaali-Db), (DRDAID = {2}), Database 'Vaali-Db' shutdown.
-----------------------------------------------------------------
-Wed Apr 19 13:02:57 EEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance 45b300a8-015b-85a9-fff9-000006876ae6 
-on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
+Wed Apr 19 13:27:29 EEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance e3a74057-015b-85bf-5055-ffffaa58e819 
+on database directory P:\Ohjelmistokehitys\vaalikone\testi  with class loader sun.misc.Launcher$AppClassLoader@1174ec5 
 Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_21-b11
+java.runtime.version=1.7.0_45-b18
 user.dir=C:\Program Files\glassfish-4.0\javadb
-derby.system.home=P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\Harjoitukset\Vaalikone5
+derby.system.home=P:\Ohjelmistokehitys\vaalikone
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Apr 19 13:27:32 EEST 2017:
+Shutting down instance e3a74057-015b-85bf-5055-ffffaa58e819 on database directory P:\Ohjelmistokehitys\vaalikone\testi with class loader sun.misc.Launcher$AppClassLoader@1174ec5 
+Wed Apr 19 13:27:33 EEST 2017 Thread[DRDAConnThread_5,5,main] (DATABASE = testi), (DRDAID = {5}), Database 'testi' shutdown.
+----------------------------------------------------------------
+Wed Apr 19 13:33:36 EEST 2017: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Apr 19 13:33:36 EEST 2017:
+Shutting down instance a816c00e-015b-85bf-5055-ffffaa58e819 on database directory P:\Ohjelmistokehitys\vaalikone\Vaali-Db with class loader sun.misc.Launcher$AppClassLoader@1174ec5 

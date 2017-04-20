@@ -10,6 +10,7 @@ import static java.lang.Integer.parseInt;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jms.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -33,8 +34,9 @@ public class Vaalikone extends HttpServlet {
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -46,22 +48,35 @@ public class Vaalikone extends HttpServlet {
 
         int kysymys_id;
 
+        Ehdokas ehdokas = null;
+        Kayttaja usr = null;
         // hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
         HttpSession session = request.getSession(true);
 
-        //hae käyttäjä-olio http-sessiosta
-        Kayttaja usr = (Kayttaja) session.getAttribute("usrobj");
 
-        //jos käyttäjä-oliota ei löydy sessiosta, luodaan sinne sellainen
-        if (usr == null) {
-            usr = new Kayttaja();
-            logger.log(Level.FINE, "Luotu uusi käyttäjä-olio");
-            session.setAttribute("usrobj", usr);
+        if (request.getParameter("Ehdokas") != null) {
+
+            ehdokas = (Ehdokas) session.getAttribute("usrobj");
+
+            if (ehdokas == null) {
+                ehdokas = new Ehdokas();
+                logger.log(Level.FINE, "Luotu uusi ehdokas-olio");
+                session.setAttribute("usrobj", ehdokas);
+            }
+        } else {
+            //hae käyttäjä-olio http-sessiosta
+            usr = (Kayttaja) session.getAttribute("usrobj");
+
+            //jos käyttäjä-oliota ei löydy sessiosta, luodaan sinne sellainen
+            if (usr == null) {
+                usr = new Kayttaja();
+                logger.log(Level.FINE, "Luotu uusi käyttäjä-olio");
+                session.setAttribute("usrobj", usr);
+            }
         }
-
+ 
         // Hae tietokanta-yhteys contextista
-        EntityManagerFactory emf
-                = (EntityManagerFactory) getServletContext().getAttribute("emf");
+        EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         EntityManager em = emf.createEntityManager();
 
         //hae url-parametri func joka määrittää toiminnon mitä halutaan tehdä.
@@ -85,7 +100,11 @@ public class Vaalikone extends HttpServlet {
                 kysymys_id = parseInt(strKysymys_id);
                 //jos vastaus on asetettu, tallenna se session käyttäjä-olioon
                 if (strVastaus != null) {
-                    usr.addVastaus(kysymys_id, parseInt(strVastaus));
+                    if (ehdokas != null) {
+                        ehdokas.addVastaus(kysymys_id, parseInt(strVastaus));
+                    } else {
+                        usr.addVastaus(kysymys_id, parseInt(strVastaus));
+                    }
                 }
 
                 //määritä seuraavaksi haettava kysymys
@@ -102,8 +121,14 @@ public class Vaalikone extends HttpServlet {
                     //Lue haluttu kysymys listaan
                     List<Kysymykset> kysymysList = q.getResultList();
                     request.setAttribute("kysymykset", kysymysList);
-                    request.getRequestDispatcher("/vastaus.jsp")
+
+                    if (ehdokas != null) {
+                    request.getRequestDispatcher("/EVastaus.jsp")
                             .forward(request, response);
+                    }else{
+                        request.getRequestDispatcher("/vastaus.jsp")
+                            .forward(request, response);
+                    }
 
                 } finally {
                     // Sulje tietokantayhteys
@@ -123,8 +148,7 @@ public class Vaalikone extends HttpServlet {
 
                 //Hae lista ehdokkaista
                 Query qE = em.createQuery(
-                        "SELECT e.ehdokasId FROM Ehdokkaat e"
-                );
+                        "SELECT e.ehdokasId FROM Ehdokkaat e");
                 List<Integer> ehdokasList = qE.getResultList();
 
                 //iteroi ehdokaslista läpi
@@ -186,7 +210,7 @@ public class Vaalikone extends HttpServlet {
             q = em.createQuery(
                     "SELECT k FROM Kysymykset k");
             List<Kysymykset> kaikkiKysymykset = q.getResultList();
-            
+
             //ohjaa tiedot tulosten esityssivulle
             request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
             request.setAttribute("kayttajanVastaukset", usr.getVastausLista());
@@ -218,7 +242,7 @@ public class Vaalikone extends HttpServlet {
         if (kVastaus - eVastaus == 2 || kVastaus - eVastaus == -2 || kVastaus - eVastaus == 3 || kVastaus - eVastaus == -3) {
             pisteet = 1;
         }
-        
+
         //if (kVastaus - eVastaus == 4 || kVastaus - eVastaus == -4) pisteet = 0;
         return pisteet;
 
@@ -226,7 +250,8 @@ public class Vaalikone extends HttpServlet {
 
     //<editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -240,7 +265,8 @@ public class Vaalikone extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -262,5 +288,4 @@ public class Vaalikone extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
