@@ -196,7 +196,8 @@ public class Vaalikone extends HttpServlet {
                   
                     //ROOPE vaihda tähän se sivu minne listailet ne jutut..
                     //POista sen jälkeen toi testi.jsp :) sillä ei tee yhtään mitään
-                    request.getRequestDispatcher("/testi.jsp")
+                    request.setAttribute("ehdokkaanVastaukset", ehdokas.getVastausLista());
+                    request.getRequestDispatcher("/EListaus.jsp")
                             .forward(request, response);
                 }
             }
@@ -234,6 +235,7 @@ public class Vaalikone extends HttpServlet {
 
             //ohjaa tiedot tulosten esityssivulle
             request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
+            
             request.setAttribute("kayttajanVastaukset", usr.getVastausLista());
             request.setAttribute("parhaanEhdokkaanVastaukset", parhaanEhdokkaanVastaukset);
             request.setAttribute("parasEhdokas", parasEhdokas);
