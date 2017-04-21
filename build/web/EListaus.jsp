@@ -4,6 +4,7 @@
     Author     : Roope
 --%>
 
+<%@page import="persist.Kysymykset"%>
 <%@page import="org.hibernate.validator.constraints.Length"%>
 <%@page import="java.util.List"%>
 <%@page import="persist.Vastaukset"%>
@@ -18,18 +19,27 @@
     <body>
         <div id="container">
             <h1>Vastauksien tarkistus</h1>
-            <% 
+            <%
                 List<Integer> ehdokkaanVastaukset = (List<Integer>) request.getAttribute("ehdokkaanVastaukset");
-                
-                
-                for (int i = 1; i < ehdokkaanVastaukset.size(); i++){
-                    
+                List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
+
+                for (int i = 1; i < ehdokkaanVastaukset.size(); i++) {
+
             %>
-            <%= ehdokkaanVastaukset.get(i) %> </br>
+            <div id="kysymysvastaus">
+                Kysymys <%= i%>: <%= kaikkiKysymykset.get(i - 1).getKysymys()%><br>
+                Vastauksesi: <b><%= ehdokkaanVastaukset.get(i)%></b>
+            </div>
+
+
+            <% }%>
+            <div class="kysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>
             
+                <form>
+                    <input id="submitnappi" type="button" name="muokkaa" value="Muokkaa" />
+                    <input id="submitnappi" type="button" name="laheta" value="Lähetä" />
+                </form>
             
-            <% } %>
-            Hello World!
         </div>
     </body>
 </html>

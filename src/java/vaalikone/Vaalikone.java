@@ -194,9 +194,14 @@ public class Vaalikone extends HttpServlet {
                     strFunc = "haeEhdokas";
                 } else {
                   
-                    //ROOPE vaihda tähän se sivu minne listailet ne jutut..
-                    //POista sen jälkeen toi testi.jsp :) sillä ei tee yhtään mitään
+                    // Haetaan kaikki kysymykset tietokannasta
+                    Query q = em.createQuery(
+                    "SELECT k FROM Kysymykset k");
+                    List<Kysymykset> kaikkiKysymykset = q.getResultList();
+                    
+                    // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokkaanVastaukset", ehdokas.getVastausLista());
+                    request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
                     request.getRequestDispatcher("/EListaus.jsp")
                             .forward(request, response);
                 }
@@ -235,7 +240,6 @@ public class Vaalikone extends HttpServlet {
 
             //ohjaa tiedot tulosten esityssivulle
             request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
-            
             request.setAttribute("kayttajanVastaukset", usr.getVastausLista());
             request.setAttribute("parhaanEhdokkaanVastaukset", parhaanEhdokkaanVastaukset);
             request.setAttribute("parasEhdokas", parasEhdokas);
