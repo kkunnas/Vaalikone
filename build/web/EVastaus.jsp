@@ -33,11 +33,11 @@
                 <%= kysymys.getKysymys()%>
             </div>
             <form action="Vaalikone" id="vastausformi">
-                <label>1</label><input type="radio" name="vastaus" value="1" />
-                <label>2</label><input type="radio" name="vastaus" value="2" />
-                <label>3</label><input type="radio" name="vastaus" value="3" checked="checked" />
-                <label>4</label><input type="radio" name="vastaus" value="4" />
-                <label>5</label><input type="radio" name="vastaus" value="5" />
+                <label>1</label><input type="radio" name="EVastaus" value="1" />
+                <label>2</label><input type="radio" name="EVastaus" value="2" />
+                <label>3</label><input type="radio" name="EVastaus" value="3" checked="checked" />
+                <label>4</label><input type="radio" name="EVastaus" value="4" />
+                <label>5</label><input type="radio" name="EVastaus" value="5" />
                 <input type="hidden" name="q" value="<%= kysymys.getKysymysId()%>">
                 <input type="submit" id="submitnappi" value="Seuraava" />
                 

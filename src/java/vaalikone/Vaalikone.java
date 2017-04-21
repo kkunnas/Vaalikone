@@ -32,6 +32,8 @@ public class Vaalikone extends HttpServlet {
 
     //hae java logger-instanssi
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
+    private Ehdokas ehdokas = null;
+    private Kayttaja usr = null;
 
     /**
      * Processes requests for both HTTP
@@ -48,33 +50,32 @@ public class Vaalikone extends HttpServlet {
 
         int kysymys_id;
 
-        Ehdokas ehdokas = null;
-        Kayttaja usr = null;
-        // hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
-        HttpSession session = request.getSession(true);
-
-
+        //Jos etusivun Ehdokas buttonia on klikattu
         if (request.getParameter("Ehdokas") != null) {
-
-            ehdokas = (Ehdokas) session.getAttribute("usrobj");
+            //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
+            HttpSession session = request.getSession(true);
+            ehdokas = (Ehdokas) session.getAttribute("e");
 
             if (ehdokas == null) {
                 ehdokas = new Ehdokas();
                 logger.log(Level.FINE, "Luotu uusi ehdokas-olio");
-                session.setAttribute("usrobj", ehdokas);
+                session.setAttribute("e", ehdokas);
             }
-        } else {
+            //Jos etusivun Käyttäjä buttonia on klikattu
+        } else if (request.getParameter("Kayttaja") != null) {
+            //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
+            HttpSession session2 = request.getSession(true);
             //hae käyttäjä-olio http-sessiosta
-            usr = (Kayttaja) session.getAttribute("usrobj");
+            usr = (Kayttaja) session2.getAttribute("usrobj");
 
             //jos käyttäjä-oliota ei löydy sessiosta, luodaan sinne sellainen
             if (usr == null) {
                 usr = new Kayttaja();
                 logger.log(Level.FINE, "Luotu uusi käyttäjä-olio");
-                session.setAttribute("usrobj", usr);
+                session2.setAttribute("usrobj", usr);
             }
         }
- 
+
         // Hae tietokanta-yhteys contextista
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         EntityManager em = emf.createEntityManager();
@@ -89,8 +90,15 @@ public class Vaalikone extends HttpServlet {
             //hae parametrinä tuotu edellisen kysymyksen nro
             String strKysymys_id = request.getParameter("q");
 
+            String strVastaus = null;
+
             //hae parametrina tuotu edellisen kysymyksen vastaus
-            String strVastaus = request.getParameter("vastaus");
+            if (ehdokas != null) {
+                strVastaus = request.getParameter("EVastaus");
+            } else if (usr != null) {
+                strVastaus = request.getParameter("vastaus");
+            }
+
 
             // Jos kysymyksen numero (kysId) on asetettu, haetaan tuo kysymys
             // muuten haetaan kysnro 1
@@ -102,7 +110,7 @@ public class Vaalikone extends HttpServlet {
                 if (strVastaus != null) {
                     if (ehdokas != null) {
                         ehdokas.addVastaus(kysymys_id, parseInt(strVastaus));
-                    } else {
+                    } else if (usr != null) {
                         usr.addVastaus(kysymys_id, parseInt(strVastaus));
                     }
                 }
@@ -123,11 +131,11 @@ public class Vaalikone extends HttpServlet {
                     request.setAttribute("kysymykset", kysymysList);
 
                     if (ehdokas != null) {
-                    request.getRequestDispatcher("/EVastaus.jsp")
-                            .forward(request, response);
-                    }else{
+                        request.getRequestDispatcher("/EVastaus.jsp")
+                                .forward(request, response);
+                    } else if (usr != null) {
                         request.getRequestDispatcher("/vastaus.jsp")
-                            .forward(request, response);
+                                .forward(request, response);
                     }
 
                 } finally {
@@ -141,43 +149,52 @@ public class Vaalikone extends HttpServlet {
                 //jos kysymykset loppuvat, lasketaan tulos!
             } else {
 
-                //Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
-                for (int i = 0; i < 20; i++) {
-                    usr.pisteet.set(i, new Tuple<>(0, 0));
-                }
+                if (ehdokas == null) {
 
-                //Hae lista ehdokkaista
-                Query qE = em.createQuery(
-                        "SELECT e.ehdokasId FROM Ehdokkaat e");
-                List<Integer> ehdokasList = qE.getResultList();
-
-                //iteroi ehdokaslista läpi
-                for (int i = 1; i < ehdokasList.size(); i++) {
-
-                    //Hae lista ehdokkaiden vastauksista
-                    Query qV = em.createQuery(
-                            "SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
-                    qV.setParameter(1, i);
-                    List<Vastaukset> vastausList = qV.getResultList();
-
-                    //iteroi vastauslista läpi
-                    for (Vastaukset eVastaus : vastausList) {
-                        int pisteet;
-
-                        //hae käyttäjän ehdokaskohtaiset pisteet
-                        pisteet = usr.getPisteet(i);
-
-                        //laske oman ja ehdokkaan vastauksen perusteella pisteet 
-                        pisteet += laskePisteet(usr.getVastaus(i), eVastaus.getVastaus());
-
-                        logger.log(Level.INFO, "eID: {0} / k: {1} / kV: {2} / eV: {3} / p: {4}", new Object[]{i, eVastaus.getVastauksetPK().getKysymysId(), usr.getVastaus(i), eVastaus.getVastaus(), pisteet});
-                        usr.addPisteet(i, pisteet);
+                    //Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
+                    for (int i = 0; i < 20; i++) {
+                        usr.pisteet.set(i, new Tuple<>(0, 0));
                     }
 
-                }
+                    //Hae lista ehdokkaista
+                    Query qE = em.createQuery(
+                            "SELECT e.ehdokasId FROM Ehdokkaat e");
+                    List<Integer> ehdokasList = qE.getResultList();
 
-                //siirrytään hakemaan paras ehdokas
-                strFunc = "haeEhdokas";
+                    //iteroi ehdokaslista läpi
+                    for (int i = 1; i < ehdokasList.size(); i++) {
+
+                        //Hae lista ehdokkaiden vastauksista
+                        Query qV = em.createQuery(
+                                "SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
+                        qV.setParameter(1, i);
+                        List<Vastaukset> vastausList = qV.getResultList();
+
+                        //iteroi vastauslista läpi
+                        for (Vastaukset eVastaus : vastausList) {
+                            int pisteet;
+
+                            //hae käyttäjän ehdokaskohtaiset pisteet
+                            pisteet = usr.getPisteet(i);
+
+                            //laske oman ja ehdokkaan vastauksen perusteella pisteet 
+                            pisteet += laskePisteet(usr.getVastaus(i), eVastaus.getVastaus());
+
+                            logger.log(Level.INFO, "eID: {0} / k: {1} / kV: {2} / eV: {3} / p: {4}", new Object[]{i, eVastaus.getVastauksetPK().getKysymysId(), usr.getVastaus(i), eVastaus.getVastaus(), pisteet});
+                            usr.addPisteet(i, pisteet);
+                        }
+
+                    }
+
+                    //siirrytään hakemaan paras ehdokas
+                    strFunc = "haeEhdokas";
+                } else {
+                  
+                    //ROOPE vaihda tähän se sivu minne listailet ne jutut..
+                    //POista sen jälkeen toi testi.jsp :) sillä ei tee yhtään mitään
+                    request.getRequestDispatcher("/testi.jsp")
+                            .forward(request, response);
+                }
             }
 
         }

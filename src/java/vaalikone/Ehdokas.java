@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author karoliina1506
  */
 public class Ehdokas implements Serializable {
-    private final List<Integer> vastaus = new ArrayList<>(20);
+    private final List<Integer> EVastaus = new ArrayList<>(20);
  
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
 
@@ -27,7 +27,7 @@ public class Ehdokas implements Serializable {
 
         //täytelläänhän listat valmiiksi
         for (int i = 0; i < 20; i++) {
-            this.vastaus.add(0);
+            this.EVastaus.add(0);
         }
 
     }
@@ -37,26 +37,26 @@ public class Ehdokas implements Serializable {
      * @return Integer-lista ehdokkaan vastauksista
      */
     public List<Integer> getVastausLista() {
-        return this.vastaus;
+        return this.EVastaus;
     }
 
     /**
-     * Hae yksittäinen ehdokkaan vastaus kysymykseen
+     * Hae yksittäinen ehdokkaan EVastaus kysymykseen
      *
      * @param index kysymyksen numero
-     * @return Yksittäinen integer-muotoinen vastaus ehdokkaan vastaus-listasta
+     * @return Yksittäinen integer-muotoinen EVastaus ehdokkaan EVastaus-listasta
      */
     public Integer getVastaus(int index) {
-        return this.vastaus.get(index);
+        return this.EVastaus.get(index);
     }
 
     /**
-     * Lisää vastaus
+     * Lisää EVastaus
      *
      * @param index kysymyksen numero
-     * @param vastaus vastauksen arvo
+     * @param EVastaus vastauksen arvo
      */
     public void addVastaus(Integer index, Integer vastaus) {
-        this.vastaus.set(index, vastaus);
+        this.EVastaus.set(index, vastaus);
     }
 }
