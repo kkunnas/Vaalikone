@@ -32,8 +32,8 @@ public class Vaalikone extends HttpServlet {
 
     //hae java logger-instanssi
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
-    private Ehdokas ehdokas = null;
-    private Kayttaja usr = null;
+    private Ehdokas ehdokas;
+    private Kayttaja usr;
 
     /**
      * Processes requests for both HTTP
@@ -52,6 +52,8 @@ public class Vaalikone extends HttpServlet {
 
         //Jos etusivun Ehdokas buttonia on klikattu
         if (request.getParameter("Ehdokas") != null) {
+            //Käytetään ehdokkaan puolta, joten asetetaan Käyttäjä olion arvoksi null
+            usr = null;
             //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
             HttpSession session = request.getSession(true);
             ehdokas = (Ehdokas) session.getAttribute("e");
@@ -63,6 +65,8 @@ public class Vaalikone extends HttpServlet {
             }
             //Jos etusivun Käyttäjä buttonia on klikattu
         } else if (request.getParameter("Kayttaja") != null) {
+            //Käytetään käyttäjän puolta, joten asetetaan Ehdokas olion arvoksi null
+            ehdokas = null;
             //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
             HttpSession session2 = request.getSession(true);
             //hae käyttäjä-olio http-sessiosta
