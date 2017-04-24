@@ -8,9 +8,17 @@
         <servlet-name>Vaalikone</servlet-name>
         <servlet-class>vaalikone.Vaalikone</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Kirjaudu</servlet-name>
+        <servlet-class>vaalikone.Kirjaudu</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Vaalikone</servlet-name>
         <url-pattern>/Vaalikone</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Kirjaudu</servlet-name>
+        <url-pattern>/Kirjaudu</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

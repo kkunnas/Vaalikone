@@ -34,6 +34,7 @@ public class Vaalikone extends HttpServlet {
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
     private Ehdokas ehdokas;
     private Kayttaja usr;
+    private int ehdokas_id;
 
     /**
      * Processes requests for both HTTP
@@ -51,12 +52,14 @@ public class Vaalikone extends HttpServlet {
         int kysymys_id;
 
         //Jos etusivun Ehdokas buttonia on klikattu
-        if (request.getParameter("Ehdokas") != null) {
+        if (request.getParameter("kirjaudu") != null) {
             //Käytetään ehdokkaan puolta, joten asetetaan Käyttäjä olion arvoksi null
             usr = null;
             //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
             HttpSession session = request.getSession(true);
             ehdokas = (Ehdokas) session.getAttribute("e");
+            
+            ehdokas_id = (Integer) request.getAttribute("salasana");
 
             if (ehdokas == null) {
                 ehdokas = new Ehdokas();
@@ -200,10 +203,11 @@ public class Vaalikone extends HttpServlet {
                     List<Kysymykset> kaikkiKysymykset = q.getResultList();
                     
                     // Ohjataan tiedot vastauksien listaus sivulle
+                    request.setAttribute("ehdokas_id", ehdokas_id);
                     request.setAttribute("ehdokkaanVastaukset", ehdokas.getVastausLista());
                     request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
                     request.getRequestDispatcher("/EListaus.jsp")
-                            .forward(request, response);
+                            .forward(request, response);  
                 }
             }
 

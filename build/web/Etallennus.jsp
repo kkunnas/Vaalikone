@@ -24,7 +24,7 @@
         <div id="container">
             <%
                 try {
-
+                    int ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
                     List<Integer> ehdokkaanVastaukset = (List<Integer>) request.getAttribute("ehdokkaanVastaukset");
                     EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
                     EntityManager em = emf.createEntityManager();
@@ -35,7 +35,7 @@
 
                         // TODO: Korvaa ehdokasID 
                         // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
-                        VastauksetPK vastauspk = new VastauksetPK(2, i);
+                        VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
 
                         // Vastaukset vastaus = new Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK);
                         Vastaukset vastaus = new Vastaukset(kommentti + i, ehdokkaanVastaukset.get(i), vastauspk);
