@@ -38,6 +38,9 @@
                 <form>
                     <input id="submitnappi" type="button" name="muokkaa" value="Muokkaa" />
                     <input id="submitnappi" type="button" name="laheta" value="Lähetä" />
+                    
+                                       <% request.getRequestDispatcher("/Etallennus.jsp")
+                            .forward(request, response); %>
                 </form>
             
         </div>
