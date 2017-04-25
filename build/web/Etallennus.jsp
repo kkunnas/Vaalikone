@@ -33,7 +33,6 @@
 
                     for (int i = 1; i < 20; i++) {
 
-                        // TODO: Korvaa ehdokasID 
                         // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
                         VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
 

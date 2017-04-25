@@ -66,6 +66,12 @@ public class Vastaukset implements Serializable {
         this.vastauksetPK = new VastauksetPK(ehdokasId, kysymysId);
     }
     
+    /**
+     * 
+     * @param kommentti
+     * @param vastaus
+     * @param vastauksetPK 
+     */
     public Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK) {
         this.vastauksetPK = vastauksetPK;
         this.vastaus = vastaus;

@@ -12,6 +12,10 @@
         <servlet-name>Kirjaudu</servlet-name>
         <servlet-class>vaalikone.Kirjaudu</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>STarkistus</servlet-name>
+        <servlet-class>vaalikone.STarkistus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Vaalikone</servlet-name>
         <url-pattern>/Vaalikone</url-pattern>
@@ -19,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>Kirjaudu</servlet-name>
         <url-pattern>/Kirjaudu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>STarkistus</servlet-name>
+        <url-pattern>/STarkistus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
