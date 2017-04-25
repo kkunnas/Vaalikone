@@ -1,2 +1,5 @@
 Vaali-Db/
 build/web/WEB-INF/
+derby.log
+Vaali-Db/log/db.lck
+Vaali-Db/log/log1.dat
