@@ -41,14 +41,14 @@
             <form method="POST">
                 <input id="submitnappi" type="submit" name="laheta" value="Lähetä" />
             </form>
-            <% request.setAttribute("ehdokas_id", ehdokas_id);
-                request.setAttribute("ehdokkaanVastaukset", ehdokkaanVastaukset);
-                request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
+            <% //request.setAttribute("ehdokas_id", ehdokas_id);
+                //request.setAttribute("ehdokkaanVastaukset", ehdokkaanVastaukset);
+                //request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
 
                 
                 if (request.getParameter("laheta") != null) {
                    
-                    request.getRequestDispatcher("/Etallennus.jsp")
+                    request.getRequestDispatcher("/ETallennus")
                             .forward(request, response);  
                     
                 }

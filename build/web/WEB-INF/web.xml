@@ -16,6 +16,18 @@
         <servlet-name>STarkistus</servlet-name>
         <servlet-class>vaalikone.STarkistus</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ETallennus</servlet-name>
+        <servlet-class>vaalikone.ETallennus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EPoisto</servlet-name>
+        <servlet-class>vaalikone.EPoisto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VMuokkaus</servlet-name>
+        <servlet-class>vaalikone.VMuokkaus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Vaalikone</servlet-name>
         <url-pattern>/Vaalikone</url-pattern>
@@ -27,6 +39,18 @@
     <servlet-mapping>
         <servlet-name>STarkistus</servlet-name>
         <url-pattern>/STarkistus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ETallennus</servlet-name>
+        <url-pattern>/ETallennus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EPoisto</servlet-name>
+        <url-pattern>/EPoisto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VMuokkaus</servlet-name>
+        <url-pattern>/VMuokkaus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

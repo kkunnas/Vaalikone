@@ -6,8 +6,6 @@ package vaalikone;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author toni1523
  */
-public class STarkistus extends HttpServlet {
+public class VMuokkaus extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,58 +31,20 @@ public class STarkistus extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        String salasana = request.getParameter("salasana");
-        String tunnus = request.getParameter("kayttajatunnus");
-        String tuloste = null;
-
-            if (crypt(salasana).equals(crypt("admin")) && tunnus.equals("admin" )) {
-                request.getRequestDispatcher("Admin.jsp")
-                            .forward(request, response); 
-            } else {
-                tuloste = " <html> "
-                        + "<head>"
-                        + "<link href='style.css' rel='stylesheet' type='text/css'>"
-                        + "</head>"
-                        + " <body>"
-                        + "<div id='container'>"
-                        + "<img id='headerimg' src='Logo.png' width='720' />"
-                        + "<div class='kysymys'>"
-                        + "<h1>Salasana tai käyttäjätunnus ei kelpaa</h1>"
-                        + "<a href='AKirjautuminen.jsp'>Takaisin</a>"
-                        + "</div>"
-                        + "</div>"
-                        + "</body>"
-                        + "</html>";
-            }
-            out.println(tuloste);
-        
-    }
-    
-    public String crypt(String str) {
-        if (str == null || str.length() == 0) {
-            throw new IllegalArgumentException("String to encrypt cannot be null or zero length");
-        }
-
-        MessageDigest digester;
         try {
-            digester = MessageDigest.getInstance("MD5");
-
-            digester.update(str.getBytes());
-            byte[] hash = digester.digest();
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < hash.length; i++) {
-                if ((0xff & hash[i]) < 0x10) {
-                    hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
-                } else {
-                    hexString.append(Integer.toHexString(0xFF & hash[i]));
-                }
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet VMuokkaus</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet VMuokkaus at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {            
+            out.close();
         }
-        return "";
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
