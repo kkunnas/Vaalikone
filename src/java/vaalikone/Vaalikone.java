@@ -129,7 +129,7 @@ public class Vaalikone extends HttpServlet {
             }
 
             //jos kysymyksiä on vielä jäljellä, hae seuraava
-            if (kysymys_id < 20) {
+            if (haeKysymykset(em).size() >= kysymys_id) {
                 try {
                     //Hae haluttu kysymys tietokannasta
                     Query q = em.createQuery(
@@ -161,7 +161,7 @@ public class Vaalikone extends HttpServlet {
                 if (ehdokas == null) {
 
                     //Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < haeKysymykset(em).size(); i++) {
                         usr.pisteet.set(i, new Tuple<>(0, 0));
                     }
 
@@ -200,15 +200,13 @@ public class Vaalikone extends HttpServlet {
                 } else {
 
                     // Haetaan kaikki kysymykset tietokannasta
-                    Query q = em.createQuery(
-                            "SELECT k FROM Kysymykset k");
-                    List<Kysymykset> kaikkiKysymykset = q.getResultList();
+                    
 
                     // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokas_id", ehdokas_id);
                     request.setAttribute("kommentti", ehdokas.getKommenttiLista());
                     request.setAttribute("ehdokkaanVastaukset", ehdokas.getVastausLista());
-                    request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
+                    request.setAttribute("kaikkiKysymykset", haeKysymykset(em));
                     request.getRequestDispatcher("/EListaus.jsp")
                             .forward(request, response);
                 }
@@ -263,6 +261,13 @@ public class Vaalikone extends HttpServlet {
 
         }
 
+    }
+
+    private List haeKysymykset(EntityManager em) {
+        Query q = em.createQuery(
+                "SELECT k FROM Kysymykset k");
+        List<Kysymykset> kaikkiKysymykset = q.getResultList();
+        return kaikkiKysymykset;
     }
 
     private Integer laskePisteet(Integer kVastaus, Integer eVastaus) {
