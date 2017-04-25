@@ -52,14 +52,14 @@ public class Vaalikone extends HttpServlet {
         int kysymys_id;
 
         //Jos etusivun Ehdokas buttonia on klikattu
-        if (request.getParameter("kirjaudu") != null) {
+        if (request.getParameter("haeEhdokas") != null) {
             //Käytetään ehdokkaan puolta, joten asetetaan Käyttäjä olion arvoksi null
             usr = null;
             //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
             HttpSession session = request.getSession(true);
             ehdokas = (Ehdokas) session.getAttribute("e");
 
-            ehdokas_id = (Integer) request.getAttribute("salasana");
+            ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
 
             if (ehdokas == null) {
                 ehdokas = new Ehdokas();

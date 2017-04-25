@@ -9,8 +9,8 @@
         <servlet-class>vaalikone.Vaalikone</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Kirjaudu</servlet-name>
-        <servlet-class>vaalikone.Kirjaudu</servlet-class>
+        <servlet-name>HaeEhdokas</servlet-name>
+        <servlet-class>vaalikone.HaeEhdokas</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>STarkistus</servlet-name>
@@ -33,8 +33,8 @@
         <url-pattern>/Vaalikone</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Kirjaudu</servlet-name>
-        <url-pattern>/Kirjaudu</url-pattern>
+        <servlet-name>HaeEhdokas</servlet-name>
+        <url-pattern>/HaeEhdokas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>STarkistus</servlet-name>

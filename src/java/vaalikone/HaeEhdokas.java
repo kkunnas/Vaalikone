@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author karoliina1506
  */
-public class Kirjaudu extends HttpServlet {
+public class HaeEhdokas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,7 +34,7 @@ public class Kirjaudu extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int salasana = Integer.parseInt(request.getParameter("salasana"));
+        int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
 
         // Hae tietokanta-yhteys contextista
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
@@ -45,8 +45,8 @@ public class Kirjaudu extends HttpServlet {
         List<Integer> ehdokasIdList = qId.getResultList();
 
         for (int i = 0; i < ehdokasIdList.size(); i++) {
-            if (ehdokasIdList.get(i).equals(salasana)) {
-                request.setAttribute("salasana", salasana);
+            if (ehdokasIdList.get(i).equals(ehdokas_id)) {
+                request.setAttribute("ehdokas_id", ehdokas_id);
                 request.getRequestDispatcher("/Vaalikone")
                         .forward(request, response);
             }
