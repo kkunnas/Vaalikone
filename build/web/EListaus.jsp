@@ -20,6 +20,9 @@
         <div id="container">
             <h1>Vastauksien tarkistus</h1>
             <%
+
+                int ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
+
                 List<Integer> ehdokkaanVastaukset = (List<Integer>) request.getAttribute("ehdokkaanVastaukset");
                 List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
 
@@ -34,15 +37,22 @@
 
             <% }%>
             <div class="kysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>
-            
-                <form>
-                    <input id="submitnappi" type="button" name="muokkaa" value="Muokkaa" />
-                    <input id="submitnappi" type="button" name="laheta" value="Lähetä" />
+
+            <form method="POST">
+                <input id="submitnappi" type="submit" name="laheta" value="Lähetä" />
+            </form>
+            <% request.setAttribute("ehdokas_id", ehdokas_id);
+                request.setAttribute("ehdokkaanVastaukset", ehdokkaanVastaukset);
+                request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
+
+                
+                if (request.getParameter("laheta") != null) {
+                   
+                    request.getRequestDispatcher("/Etallennus.jsp")
+                            .forward(request, response);  
                     
-                                       <% request.getRequestDispatcher("/Etallennus.jsp")
-                            .forward(request, response); %>
-                </form>
-            
+                }
+            %>
         </div>
     </body>
 </html>
