@@ -29,10 +29,11 @@
             <div class="kysymys">
                 <p>Ehdokkaalle..</p> 
 
-                <%= kysymys.getKysymysId()%> / 19 <br>
+                <%= kysymys.getKysymysId()%> / 19 </br>
                 <%= kysymys.getKysymys()%>
             </div>
-            <form action="Vaalikone" id="vastausformi">
+
+            <form action="Vaalikone" id="vastausformi"></br>
                 <label>1</label><input type="radio" name="EVastaus" value="1" />
                 <label>2</label><input type="radio" name="EVastaus" value="2" />
                 <label>3</label><input type="radio" name="EVastaus" value="3" checked="checked" />
@@ -40,15 +41,14 @@
                 <label>5</label><input type="radio" name="EVastaus" value="5" />
                 <input type="hidden" name="q" value="<%= kysymys.getKysymysId()%>"></br>
                 Kommentoi vastaustasi<br>
-                <input type="text" name="kommentti" maxlength="200"><br>
+                <textarea name="kommentti" maxlength="200" rows="4" cols="40"></textarea><br>
                 <input onclick="history.go(-1);
                         return true" type="button" id="seuraavanappi" value="Edellinen" />
                 <input type="submit" id="seuraavanappi" value="Seuraava" />
-
-
-
+                
             </form>
-            <div class="kysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>
+
+            <div class="ekysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>
             <%
                 }
             %>

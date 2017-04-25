@@ -46,6 +46,16 @@ body {
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
     text-align: center;
 }
+.ekysymys{
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    height: 100px;
+    color: #3E3E3E;
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+    text-align: center;
+}
 #submitnappi{
     float: none;
     margin-left: auto;
@@ -70,7 +80,7 @@ body {
 }
 .button{
     display: inline-block;
-    
+
 }
 #seuraavanappi{
     margin-left: auto;

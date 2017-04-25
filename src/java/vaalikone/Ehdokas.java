@@ -28,7 +28,7 @@ public class Ehdokas implements Serializable {
         //täytelläänhän listat valmiiksi
         for (int i = 0; i < 20; i++) {
             this.EVastaus.add(0);
-            this.EKommentti.add(null);
+            this.EKommentti.add("");
         }
 
     }
