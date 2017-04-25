@@ -39,6 +39,8 @@
                 <label>4</label><input type="radio" name="EVastaus" value="4" />
                 <label>5</label><input type="radio" name="EVastaus" value="5" />
                 <input type="hidden" name="q" value="<%= kysymys.getKysymysId()%>"></br>
+                Kommentoi vastaustasi<br>
+                <input type="text" name="kommentti" maxlength="200"><br>
                 <input onclick="history.go(-1);
                         return true" type="button" id="seuraavanappi" value="Edellinen" />
                 <input type="submit" id="seuraavanappi" value="Seuraava" />

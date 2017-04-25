@@ -58,7 +58,7 @@ public class Vaalikone extends HttpServlet {
             //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
             HttpSession session = request.getSession(true);
             ehdokas = (Ehdokas) session.getAttribute("e");
-            
+
             ehdokas_id = (Integer) request.getAttribute("salasana");
 
             if (ehdokas == null) {
@@ -96,12 +96,13 @@ public class Vaalikone extends HttpServlet {
 
             //hae parametrinä tuotu edellisen kysymyksen nro
             String strKysymys_id = request.getParameter("q");
-
+            String kommentti = null;
             String strVastaus = null;
 
             //hae parametrina tuotu edellisen kysymyksen vastaus
             if (ehdokas != null) {
                 strVastaus = request.getParameter("EVastaus");
+                kommentti = request.getParameter("kommentti");
             } else if (usr != null) {
                 strVastaus = request.getParameter("vastaus");
             }
@@ -117,6 +118,7 @@ public class Vaalikone extends HttpServlet {
                 if (strVastaus != null) {
                     if (ehdokas != null) {
                         ehdokas.addVastaus(kysymys_id, parseInt(strVastaus));
+                        ehdokas.addKommentti(kysymys_id, kommentti);
                     } else if (usr != null) {
                         usr.addVastaus(kysymys_id, parseInt(strVastaus));
                     }
@@ -196,18 +198,19 @@ public class Vaalikone extends HttpServlet {
                     //siirrytään hakemaan paras ehdokas
                     strFunc = "haeEhdokas";
                 } else {
-                  
+
                     // Haetaan kaikki kysymykset tietokannasta
                     Query q = em.createQuery(
-                    "SELECT k FROM Kysymykset k");
+                            "SELECT k FROM Kysymykset k");
                     List<Kysymykset> kaikkiKysymykset = q.getResultList();
-                    
+
                     // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokas_id", ehdokas_id);
+                    request.setAttribute("kommentti", ehdokas.getKommenttiLista());
                     request.setAttribute("ehdokkaanVastaukset", ehdokas.getVastausLista());
                     request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
                     request.getRequestDispatcher("/EListaus.jsp")
-                            .forward(request, response);  
+                            .forward(request, response);
                 }
             }
 

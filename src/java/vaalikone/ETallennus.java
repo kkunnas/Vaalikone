@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persist.Kysymykset;
 import persist.Vastaukset;
 import persist.VastauksetPK;
 
@@ -38,8 +39,7 @@ public class ETallennus extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String tuloste;
-        String kommentti;
-
+       
         tuloste = " <html> "
                 + "<head>"
                 + "<link href='style.css' rel='stylesheet' type='text/css'>"
@@ -52,24 +52,26 @@ public class ETallennus extends HttpServlet {
         try {
             int ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
             List<Integer> ehdokkaanVastaukset = (List<Integer>) request.getAttribute("ehdokkaanVastaukset");
+            List<String> kommenttiLista = (List<String>) request.getAttribute("kommentti");
+            
+            List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
+            
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
             EntityManager em = emf.createEntityManager();
 
-            kommentti = "Ehdokkaan vastaus kysymykseen numero ";
-
-            for (int i = 1; i < 20; i++) {
+            for (int i = 1; i <= kaikkiKysymykset.size(); i++) {
 
                 // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
                 VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
 
                 // Vastaukset vastaus = new Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK);
-                Vastaukset vastaus = new Vastaukset(kommentti + i, ehdokkaanVastaukset.get(i), vastauspk);
+                Vastaukset vastaus = new Vastaukset(kommenttiLista.get(i), ehdokkaanVastaukset.get(i), vastauspk);
 
                 em.getTransaction().begin();
                 em.persist(vastaus);
                 em.getTransaction().commit();
             }
-            
+
             em.close();
             tuloste += "Vastauksesi on tallennettu onnistuneesti!";
 
@@ -82,7 +84,7 @@ public class ETallennus extends HttpServlet {
                     + "</div>"
                     + "</body>"
                     + "</html>";
-            
+
             out.println(tuloste);
         }
     }
