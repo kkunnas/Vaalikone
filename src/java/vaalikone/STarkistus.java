@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,34 +34,38 @@ public class STarkistus extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         String salasana = request.getParameter("salasana");
         String tunnus = request.getParameter("kayttajatunnus");
         String tuloste = null;
 
-            if (crypt(salasana).equals(crypt("admin")) && tunnus.equals("admin" )) {
-                request.getRequestDispatcher("Admin.jsp")
-                            .forward(request, response); 
-            } else {
-                tuloste = " <html> "
-                        + "<head>"
-                        + "<link href='style.css' rel='stylesheet' type='text/css'>"
-                        + "</head>"
-                        + " <body>"
-                        + "<div id='container'>"
-                        + "<img id='headerimg' src='Logo.png' width='720' />"
-                        + "<div class='kysymys'>"
-                        + "<h1>Salasana tai käyttäjätunnus ei kelpaa</h1>"
-                        + "<a href='AKirjautuminen.jsp'>Takaisin</a>"
-                        + "</div>"
-                        + "</div>"
-                        + "</body>"
-                        + "</html>";
-            }
-            out.println(tuloste);
-        
+
+        if (crypt(salasana).equals(crypt("admin")) && tunnus.equals("admin")) {
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("admin","admin");
+            request.getRequestDispatcher("Admin.jsp")
+                    .forward(request, response);
+        } else {
+            tuloste = " <html> "
+                    + "<head>"
+                    + "<link href='style.css' rel='stylesheet' type='text/css'>"
+                    + "</head>"
+                    + " <body>"
+                    + "<div id='container'>"
+                    + "<img id='headerimg' src='Logo.png' width='720' />"
+                    + "<div class='kysymys'>"
+                    + "<h1>Salasana tai käyttäjätunnus ei kelpaa</h1>"
+                    + "<a href='AKirjautuminen.jsp'>Takaisin</a>"
+                    + "</div>"
+                    + "</div>"
+                    + "</body>"
+                    + "</html>";
+        }
+        out.println(tuloste);
+
     }
-    
+
     public String crypt(String str) {
         if (str == null || str.length() == 0) {
             throw new IllegalArgumentException("String to encrypt cannot be null or zero length");
