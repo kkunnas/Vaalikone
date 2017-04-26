@@ -24,10 +24,6 @@
         <servlet-name>EPoisto</servlet-name>
         <servlet-class>vaalikone.EPoisto</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>VMuokkaus</servlet-name>
-        <servlet-class>vaalikone.VMuokkaus</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Vaalikone</servlet-name>
         <url-pattern>/Vaalikone</url-pattern>
@@ -47,10 +43,6 @@
     <servlet-mapping>
         <servlet-name>EPoisto</servlet-name>
         <url-pattern>/EPoisto</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>VMuokkaus</servlet-name>
-        <url-pattern>/VMuokkaus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

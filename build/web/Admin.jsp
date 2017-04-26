@@ -25,7 +25,7 @@
             </form></br>
             
             <h3><a href="">Ehdokkaan vastausten poisto</a></h3>
-            <h3><a href="">Kysymysten muokkaaminen</h3>
+            <h3><a href="KMuokkaus.jsp">Kysymysten muokkaaminen</h3>
             <small>Kirjaudu ulos</small>
 
         </div>
