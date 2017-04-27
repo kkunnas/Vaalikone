@@ -75,9 +75,6 @@ body {
     margin-right: auto;
     text-align: center;
 }
-#kysymysvastaus{
-    margin-bottom: 20px;
-}
 .button{
     display: inline-block;
 
@@ -91,4 +88,7 @@ body {
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
     font-style: normal;
     font-size: large;
+}
+#muokkaaminen{
+    margin-bottom: 20px;
 }

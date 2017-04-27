@@ -1,70 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-Wed Apr 26 15:30:16 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
-----------------------------------------------------------------
-Wed Apr 26 15:30:16 EEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-aa3d-9c8b-ffffe577c9b4 
-on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
-=======
-Thu Apr 27 09:01:51 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
-----------------------------------------------------------------
-Thu Apr 27 09:02:07 EEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-ae00-5d6b-ffffaa58e819 
-on database directory P:\Ohjelmistokehitys\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@21346812 
->>>>>>> Stashed changes
-=======
-Thu Apr 27 11:42:24 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
-----------------------------------------------------------------
-Thu Apr 27 11:42:56 EEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-ae93-597a-ffffa061806c 
-on database directory P:\repositories\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1174ec5 
->>>>>>> 34fb5bec83b0600af41185ba5bcbfddfcbd7c62c
-Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_45-b18
-user.dir=C:\Program Files\glassfish-4.0\javadb
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-derby.system.home=P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\vaalikone
-Database Class Loader started - derby.database.classpath=''
-Wed Apr 26 15:30:18 EEST 2017 Thread[DRDAConnThread_3,5,main] (XID = 3835), (SESSIONID = 0), (DATABASE = Vaali-Db), (DRDAID = {1}), Cleanup action starting
-java.sql.SQLNonTransientConnectionException: Connection authentication failure occurred.  Reason: Invalid authentication..
+Thu Apr 27 15:13:48 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Thu Apr 27 15:13:48 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
+java.sql.SQLException: Database 'Vaali-Db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-=======
-derby.system.home=P:\Ohjelmistokehitys\vaalikone
-
-------------  BEGIN SHUTDOWN ERROR STACK -------------
-
-ERROR XSLA7: Cannot redo operation null in the log.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.FileLogger.redo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.LogToFile.recover(Unknown Source)
-	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
->>>>>>> Stashed changes
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
@@ -78,13 +20,12 @@ ERROR XSLA7: Cannot redo operation null in the log.
 	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-<<<<<<< Updated upstream
-Caused by: java.sql.SQLException: Connection authentication failure occurred.  Reason: Invalid authentication..
+Caused by: java.sql.SQLException: Database 'Vaali-Db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
 	... 19 more
 ============= begin nested exception, level (1) ===========
-java.sql.SQLException: Connection authentication failure occurred.  Reason: Invalid authentication..
+java.sql.SQLException: Database 'Vaali-Db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
@@ -92,41 +33,7 @@ java.sql.SQLException: Connection authentication failure occurred.  Reason: Inva
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-=======
-Caused by: ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.findpage(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.needsRedo(Unknown Source)
-	... 35 more
-============= begin nested exception, level (1) ===========
-ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.findpage(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.needsRedo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.FileLogger.redo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.LogToFile.recover(Unknown Source)
-	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
->>>>>>> Stashed changes
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
@@ -141,28 +48,16 @@ ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been d
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
 ============= end nested exception, level (1) ===========
-<<<<<<< Updated upstream
 Cleanup action completed
-Wed Apr 26 15:30:18 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db), (DRDAID = {1}), Connection authentication failure occurred.  Reason: Invalid authentication..
-----------------------------------------------------------------
-Wed Apr 26 16:32:19 EEST 2017: Shutting down Derby engine
-----------------------------------------------------------------
-Wed Apr 26 16:32:19 EEST 2017:
-Shutting down instance a816c00e-015b-aa3d-9c8b-ffffe577c9b4 on database directory P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\vaalikone\Vaali-Db with class loader sun.misc.Launcher$AppClassLoader@1830e4a7 
-=======
-
-
-------------  END SHUTDOWN ERROR STACK -------------
-
-----------------------------------------------------------------
-Thu Apr 27 09:02:08 EEST 2017:
-Shutting down instance a816c00e-015b-ae00-5d6b-ffffaa58e819 on database directory P:\Ohjelmistokehitys\vaalikone\Vaali-Db with class loader sun.misc.Launcher$AppClassLoader@21346812 
-Thu Apr 27 09:02:08 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
-java.sql.SQLException: Failed to start database 'Vaali-Db/' with class loader sun.misc.Launcher$AppClassLoader@21346812, see the next exception for details.
+Thu Apr 27 15:13:48 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db/), (DRDAID = {1}), Database 'Vaali-Db/' not found.
+Thu Apr 27 15:13:49 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
+java.sql.SQLException: Database 'Vaali-Db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
@@ -176,47 +71,20 @@ java.sql.SQLException: Failed to start database 'Vaali-Db/' with class loader su
 	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Caused by: java.sql.SQLException: Failed to start database 'Vaali-Db/' with class loader sun.misc.Launcher$AppClassLoader@21346812, see the next exception for details.
+Caused by: java.sql.SQLException: Database 'Vaali-Db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 17 more
-Caused by: java.sql.SQLException: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	... 14 more
-Caused by: ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.findpage(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.needsRedo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.FileLogger.redo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.LogToFile.recover(Unknown Source)
-	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
-	... 14 more
+	... 19 more
 ============= begin nested exception, level (1) ===========
-java.sql.SQLTransactionRollbackException: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
+java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
@@ -230,44 +98,44 @@ java.sql.SQLTransactionRollbackException: Container Container(0, 1249) cannot be
 	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Caused by: java.sql.SQLException: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 16 more
-Caused by: ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.findpage(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.needsRedo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.FileLogger.redo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.LogToFile.recover(Unknown Source)
-	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
-	... 14 more
 ============= end nested exception, level (1) ===========
-============= begin nested exception, level (2) ===========
-java.sql.SQLException: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
+Cleanup action completed
+Thu Apr 27 15:13:49 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db/), (DRDAID = {2}), Database 'Vaali-Db/' not found.
+Thu Apr 27 15:13:50 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
+java.sql.SQLException: Database 'Vaali-Db' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: java.sql.SQLException: Database 'Vaali-Db' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 19 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Database 'Vaali-Db' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
 	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
@@ -281,82 +149,169 @@ java.sql.SQLException: Container Container(0, 1249) cannot be opened; it either 
 	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Caused by: ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.findpage(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.needsRedo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.FileLogger.redo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.LogToFile.recover(Unknown Source)
-	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
-	... 14 more
-============= end nested exception, level (2) ===========
-============= begin nested exception, level (3) ===========
-ERROR 40XD2: Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.findpage(Unknown Source)
-	at org.apache.derby.impl.store.raw.data.PageBasicOperation.needsRedo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.FileLogger.redo(Unknown Source)
-	at org.apache.derby.impl.store.raw.log.LogToFile.recover(Unknown Source)
-	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
-	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
-	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
-	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
-	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
-	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-============= end nested exception, level (3) ===========
+============= end nested exception, level (1) ===========
 Cleanup action completed
-Thu Apr 27 09:02:08 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db/), (DRDAID = {1}), Failed to start database 'Vaali-Db/' with class loader sun.misc.Launcher$AppClassLoader@21346812, see the next exception for details.
-Thu Apr 27 09:02:08 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db/), (DRDAID = {1}), Container Container(0, 1249) cannot be opened; it either has been dropped or does not exist.
+Thu Apr 27 15:13:50 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db), (DRDAID = {3}), Database 'Vaali-Db' not found.
+Thu Apr 27 15:13:52 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
+java.sql.SQLException: Database 'Vaali-Db' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: java.sql.SQLException: Database 'Vaali-Db' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 19 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Database 'Vaali-Db' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+Thu Apr 27 15:13:52 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db), (DRDAID = {4}), Database 'Vaali-Db' not found.
+Thu Apr 27 15:13:53 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
+java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 19 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+Thu Apr 27 15:13:53 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db/), (DRDAID = {5}), Database 'Vaali-Db/' not found.
+Thu Apr 27 15:13:54 EEST 2017 Thread[DRDAConnThread_3,5,main] Cleanup action starting
+java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 19 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Database 'Vaali-Db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+Thu Apr 27 15:13:54 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-Db/), (DRDAID = {6}), Database 'Vaali-Db/' not found.
 ----------------------------------------------------------------
-Thu Apr 27 09:02:13 EEST 2017: Shutting down Derby engine
-----------------------------------------------------------------
->>>>>>> Stashed changes
-=======
+Thu Apr 27 15:15:03 EEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-af54-e4d1-ffffa061806c 
+on database directory P:\repositories\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1174ec5 
+Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_45-b18
+user.dir=C:\Program Files\glassfish-4.0\javadb
 derby.system.home=P:\repositories\vaalikone
 Database Class Loader started - derby.database.classpath=''
->>>>>>> 34fb5bec83b0600af41185ba5bcbfddfcbd7c62c

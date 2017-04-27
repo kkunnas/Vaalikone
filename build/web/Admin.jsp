@@ -33,6 +33,7 @@
             </form></br>
 
             <h3><a href="KMuokkaus.jsp">Kysymysten muokkaaminen</a></h3>
+            <h3><a href="EMuokkaus.jsp">Ehdokkaiden lisääminen</a></h3>
             <small><a href="AKirjautuminen.jsp?logout=logout" >Kirjaudu ulos</a></small>
 
         </div>
