@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 Wed Apr 26 15:30:16 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
@@ -11,10 +12,18 @@ Thu Apr 27 09:02:07 EEST 2017:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-ae00-5d6b-ffffaa58e819 
 on database directory P:\Ohjelmistokehitys\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@21346812 
 >>>>>>> Stashed changes
+=======
+Thu Apr 27 11:42:24 EEST 2017 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Thu Apr 27 11:42:56 EEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-015b-ae93-597a-ffffa061806c 
+on database directory P:\repositories\vaalikone\Vaali-Db  with class loader sun.misc.Launcher$AppClassLoader@1174ec5 
+>>>>>>> 34fb5bec83b0600af41185ba5bcbfddfcbd7c62c
 Loaded from file:/C:/Program%20Files/glassfish-4.0/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_21-b11
+java.runtime.version=1.7.0_45-b18
 user.dir=C:\Program Files\glassfish-4.0\javadb
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 derby.system.home=P:\Kevät17\Ohjelmistokehitys\wwwSovelluspalvelut\vaalikone
 Database Class Loader started - derby.database.classpath=''
@@ -347,3 +356,7 @@ Thu Apr 27 09:02:08 EEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = Vaali-
 Thu Apr 27 09:02:13 EEST 2017: Shutting down Derby engine
 ----------------------------------------------------------------
 >>>>>>> Stashed changes
+=======
+derby.system.home=P:\repositories\vaalikone
+Database Class Loader started - derby.database.classpath=''
+>>>>>>> 34fb5bec83b0600af41185ba5bcbfddfcbd7c62c

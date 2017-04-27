@@ -18,8 +18,6 @@
                         .forward(request, response);
             }
         %>
-
-
         <div id="container">
 
             <img id="headerimg" src="Logo.png" width="720" />
@@ -29,13 +27,13 @@
 
             <form id="vastausformi" action="HaeEhdokas">
                 Syötä ehdokkaan id</br>
-                <input id="ehdokas_id" type="text" name="ehdokas_id">
-                <input id="submitnappi" type="submit" name="haeEhdokas" value="Hae" />                   
+                <input id="ehdokas_id" type="text" name="ehdokas_id" /></br>
+                <input id="seuraavanappi" type="submit" name="poistaEhdokas" value="Poista" />
+                <input id="seuraavanappi" type="submit" name="haeEhdokas" value="Hae" />                   
             </form></br>
 
-            <h3><a href="">Ehdokkaan vastausten poisto</a></h3>
-            <h3><a href="KMuokkaus.jsp">Kysymysten muokkaaminen</h3>
-            <small><a href="index.html">Kirjaudu ulos</a></small>
+            <h3><a href="KMuokkaus.jsp">Kysymysten muokkaaminen</a></h3>
+            <small><a href="AKirjautuminen.jsp?logout=logout" >Kirjaudu ulos</a></small>
 
         </div>
     </body>

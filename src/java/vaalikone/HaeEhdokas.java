@@ -45,6 +45,7 @@ public class HaeEhdokas extends HttpServlet {
                 "SELECT e.ehdokasId FROM Ehdokkaat e");
         List<Integer> ehdokasIdList = qId.getResultList();
 
+
         for (int i = 0; i < ehdokasIdList.size(); i++) {
             if (ehdokasIdList.get(i).equals(ehdokas_id)) {
 
@@ -53,27 +54,36 @@ public class HaeEhdokas extends HttpServlet {
                         "SELECT v.vastauksetPK.ehdokasId FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
                 qV.setParameter(1, ehdokas_id);
                 List<Integer> vastausList = qV.getResultList();
-                
-                
+
+
                 request.setAttribute("ehdokas_id", ehdokas_id);
-                
-                while (vastausList.size() > ehdokas_id) {
-                    //Tutkitaan vastaako vastaukset taulun ehdokasId parametrinä tuotua ehdokas_id:tä
-                    if (vastausList.get(i).equals(ehdokas_id)) {
-                        //Jos vastaa, siirrytään muokkaamaan tietokantaan tallennettuja tietoja
-                        request.getRequestDispatcher("/VMuokkaus")
-                                .forward(request, response);
+
+                if (request.getParameter("haeEhdokas") != null) {
+                    while (vastausList.size() > ehdokas_id) {
+                        //Tutkitaan vastaako vastaukset taulun ehdokasId parametrinä tuotua ehdokas_id:tä
+                        if (vastausList.get(i).equals(ehdokas_id)) {
+                            //Jos vastaa, siirrytään muokkaamaan tietokantaan tallennettuja tietoja
+                            request.getRequestDispatcher("/VMuokkaus")
+                                    .forward(request, response);
+                        }
                     }
-                }
-                //Jos ei vastaa, siirrytään syöttämään ehdokkaan vastaukset 
-                request.getRequestDispatcher("/Vaalikone")
-                        .forward(request, response);
+                    request.setAttribute("ehdokas_id", ehdokas_id);
+                    request.getRequestDispatcher("/Vaalikone")
+                            .forward(request, response);
+                    
+                } else if (request.getParameter("poistaEhdokas") != null) {
+
+                    request.setAttribute("ehdokas_id", ehdokas_id);
+                    request.getRequestDispatcher("/EPoisto")
+                            .forward(request, response);
+
+                } 
+
             }
         }
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP
      * <code>GET</code> method.

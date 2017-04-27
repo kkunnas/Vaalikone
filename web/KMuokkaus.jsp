@@ -10,6 +10,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="persist.Kysymykset" %>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +18,13 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <%
+            // Tarkistetaan onko "admin" -sessio olemassa ja jos ei niin ohjataan kirjautumiseen
+            if (session.getAttribute("admin") != "admin") {
+                request.getRequestDispatcher("AKirjautuminen.jsp")
+                        .forward(request, response);
+            }
+        %>
         <div id="container">
             <img id="headerimg" src="Logo.png" width="720" />
             <h1>Kysymysten muokkaaminen</h1>
@@ -105,7 +113,8 @@
             %> Jokin meni vikaan, tarkista id. <%                                }
 
                 }
-            %>
+            %></br>
+            <a href="Admin.jsp">Takaisin</a>
         </div>
     </body>
 </html>
