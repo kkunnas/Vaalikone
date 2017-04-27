@@ -53,8 +53,15 @@ public class ETallennus extends HttpServlet {
             int ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
             List<Integer> ehdokkaanVastaukset = (List<Integer>) request.getAttribute("ehdokkaanVastaukset");
             List<String> kommenttiLista = (List<String>) request.getAttribute("kommentti");
-
             List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
+
+
+            for (int i = 1; i < ehdokkaanVastaukset.size(); i++) {
+               int v = Integer.parseInt(request.getParameter("vastaus" + i));
+                if (ehdokkaanVastaukset.get(i) != v) {
+                    ehdokkaanVastaukset.set(i, v);
+                }
+            }
 
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
             EntityManager em = emf.createEntityManager();
@@ -76,7 +83,7 @@ public class ETallennus extends HttpServlet {
             tuloste += "Vastauksesi on tallennettu onnistuneesti!";
 
         } catch (Exception e) {
-            tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti!";
+            tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti! " + e;
 
         } finally {
             tuloste += "</h1>"

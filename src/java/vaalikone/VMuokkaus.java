@@ -14,13 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import persist.Vastaukset;
+import persist.Kysymykset;
 
 /**
  *
  * @author karoliina1506
  */
-public class HaeEhdokas extends HttpServlet {
+public class VMuokkaus extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,46 +34,35 @@ public class HaeEhdokas extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
         int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
 
         // Hae tietokanta-yhteys contextista
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         EntityManager em = emf.createEntityManager();
 
-        Query qId = em.createQuery(
-                "SELECT e.ehdokasId FROM Ehdokkaat e");
-        List<Integer> ehdokasIdList = qId.getResultList();
+        //hae ko. ehdokkaan vastaukset
+        Query q = em.createQuery(
+                "SELECT v.vastaus FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
+        q.setParameter(1, ehdokas_id);
+        List<Integer> ehdokkaanVastaukset = q.getResultList();
 
-        for (int i = 0; i < ehdokasIdList.size(); i++) {
-            if (ehdokasIdList.get(i).equals(ehdokas_id)) {
+        //hae kaikki kysymykset
+        q = em.createQuery(
+                "SELECT k FROM Kysymykset k");
+        List<Kysymykset> kaikkiKysymykset = q.getResultList();
 
-                //hae listaan ehdokkaiden ID:t vastaukset taulusta
-                Query qV = em.createQuery(
-                        "SELECT v.vastauksetPK.ehdokasId FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
-                qV.setParameter(1, ehdokas_id);
-                List<Integer> vastausList = qV.getResultList();
-                
-                
-                request.setAttribute("ehdokas_id", ehdokas_id);
-                
-                while (vastausList.size() > ehdokas_id) {
-                    //Tutkitaan vastaako vastaukset taulun ehdokasId parametrinä tuotua ehdokas_id:tä
-                    if (vastausList.get(i).equals(ehdokas_id)) {
-                        //Jos vastaa, siirrytään muokkaamaan tietokantaan tallennettuja tietoja
-                        request.getRequestDispatcher("/VMuokkaus")
-                                .forward(request, response);
-                    }
-                }
-                //Jos ei vastaa, siirrytään syöttämään ehdokkaan vastaukset 
-                request.getRequestDispatcher("/Vaalikone")
-                        .forward(request, response);
-            }
-        }
+
+        request.setAttribute("ehdokas_id", ehdokas_id);
+        request.setAttribute("ehdokkaanVastaukset", ehdokkaanVastaukset);
+        request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
+        request.getRequestDispatcher("/EListaus.jsp")
+                .forward(request, response);
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.

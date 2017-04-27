@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class Ehdokas implements Serializable {
 
-    private final List<Integer> EVastaus = new ArrayList<>(20);
-    private final List<String> EKommentti = new ArrayList<>(20);
+    private final List<Integer> EVastaus = new ArrayList<>();
+    private final List<String> EKommentti = new ArrayList<>();
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
 
     /**

@@ -24,60 +24,46 @@
                 List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
 
                 for (int i = 1; i < ehdokkaanVastaukset.size(); i++) {
+                    int vastaus = ehdokkaanVastaukset.get(i); 
             %>
-            <div id="kysymysvastaus">
-                Kysymys <%= i%>: <%= kaikkiKysymykset.get(i - 1).getKysymys()%><br>
-                Vastauksesi: <b><%= ehdokkaanVastaukset.get(i)%></b>
-            </div>
-            <% }%>
+            
+           
             <div id="muokkaaminen">
-                <form method="POST">
-                    <b>Muokkaaminen:</b></br>
-                    Kysymys: 
-                    <select name="kysymys">
-                        <% for (int i = 1; i <= kaikkiKysymykset.size(); i++) {%>
-                        <option value="<%= i%>"><%= i%></option>
-                        <% }%>
-                    </select>
-                    Vastaus: 
-                    <select name="vastaus">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <button name="tallenna" value="Tallenna">Tallenna</button>
-                </form>
+                <div id="kysymysvastaus">
+                Kysymys <%= i%>: <%= kaikkiKysymykset.get(i - 1).getKysymys()%><br>
+             <!--   Vastauksesi: <b><%= ehdokkaanVastaukset.get(i)%></b>-->
+            </div>
+           
+                
+                <form method="POST"></br>
+                <label>1</label><input type="radio" name="vastaus<%= i%>" value="1" <% if (vastaus ==1){ out.println("checked='checked'"); }%>/>
+                <label>2</label><input type="radio" name="vastaus<%=  i%>" value="2" <% if (vastaus ==2){ out.println("checked='checked'");}%>/>
+                <label>3</label><input type="radio" name="vastaus<%=  i%>" value="3" <% if (vastaus ==3){ out.println("checked='checked'");}%> />
+                <label>4</label><input type="radio" name="vastaus<%=  i%>" value="4" <% if (vastaus ==4){ out.println("checked='checked'");}%>/>
+                <label>5</label><input type="radio" name="vastaus<%=  i%>" value="5" <% if (vastaus ==5){ out.println("checked='checked'");}%>/>
+
+           <%              
+               
+                    
+                }%>
+            <input id="submitnappi" type="submit" name="laheta" value="Lähetä" />
+            </form>
+            
             </div>
 
-            <%
-                if (request.getParameter("tallenna") != null) {
-                    String kysymys = request.getParameter("kysymys");
-                    String vastaus = request.getParameter("vastaus");
-
-                    int k = Integer.parseInt(kysymys);
-                    int v = Integer.parseInt(vastaus);
-
-                    ehdokkaanVastaukset.set(k, v);
-
-                    response.setHeader("Refresh", "0; http://localhost:8080/vaalikone/Vaalikone?EVastaus=" + ehdokkaanVastaukset.get(19) + "&q=19");
-
-                }
-
-            %>
 
             <div class="kysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>
-            <form method="POST">
-                <input id="submitnappi" type="submit" name="laheta" value="Lähetä" />
-            </form>
-            <%
-                if (request.getParameter("laheta") != null) {
 
+                
+            <%
+
+                if (request.getParameter("laheta") != null) {
+                    
                     request.getRequestDispatcher("/ETallennus")
                             .forward(request, response);
                 }
             %>
+            
         </div>
     </body>
 </html>
