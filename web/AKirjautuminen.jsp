@@ -5,12 +5,18 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <%
+            if (request.getParameter("logout") != null) {
+                        session.setAttribute("admin", null);
+            }
+        %>
         <div id="container">
 
             <img id="headerimg" src="Logo.png" width="720" />

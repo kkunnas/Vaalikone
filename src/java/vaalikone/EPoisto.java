@@ -51,7 +51,7 @@ public class EPoisto extends HttpServlet {
 
         try {
             //Haetaan annettu ehdokasID
-            int id = Integer.parseInt(request.getParameter("ehdokasID"));
+            int id = Integer.parseInt(request.getParameter("ehdokas_id"));
 
             //Alustetaan EntityManager   
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
@@ -59,7 +59,7 @@ public class EPoisto extends HttpServlet {
             //Suoritetaan query, jolla poistetaan ID:tä vastaavat vastaukset.  
             em.getTransaction().begin();
             Query query = em.createQuery("DELETE FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId =:p");
-            int deleteID = query.setParameter("p", id).executeUpdate();
+            query.setParameter("p", id).executeUpdate();
             em.getTransaction().commit();
             //Lopuksi suljetaan yhteys
             em.close();

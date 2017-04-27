@@ -44,12 +44,24 @@ public class HaeEhdokas extends HttpServlet {
                 "SELECT e.ehdokasId FROM Ehdokkaat e");
         List<Integer> ehdokasIdList = qId.getResultList();
 
-        for (int i = 0; i < ehdokasIdList.size(); i++) {
-            if (ehdokasIdList.get(i).equals(ehdokas_id)) {
-                request.setAttribute("ehdokas_id", ehdokas_id);
-                request.getRequestDispatcher("/Vaalikone")
-                        .forward(request, response);
+        if (request.getParameter("haeEhdokas") != null) {
+            for (int i = 0; i < ehdokasIdList.size(); i++) {
+                if (ehdokasIdList.get(i).equals(ehdokas_id)) {
+                    request.setAttribute("ehdokas_id", ehdokas_id);
+                    request.getRequestDispatcher("/Vaalikone")
+                            .forward(request, response);
+                }
             }
+        // Tutkitaan löytyykö annettu ID tietokannasta ja jos löytyy ohjataan se EPoisto:lle
+        } else if (request.getParameter("poistaEhdokas") != null) {
+            for (int i = 0; i < ehdokasIdList.size(); i++) {
+                if (ehdokasIdList.get(i).equals(ehdokas_id)) {
+                    request.setAttribute("ehdokas_id", ehdokas_id);
+                    request.getRequestDispatcher("/EPoisto")
+                            .forward(request, response);
+                }
+            }
+
         }
     }
 
