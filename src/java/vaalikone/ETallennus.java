@@ -57,7 +57,7 @@ public class ETallennus extends HttpServlet {
 
 
             for (int i = 1; i < ehdokkaanVastaukset.size(); i++) {
-               int v = Integer.parseInt(request.getParameter("vastaus" + i));
+                int v = Integer.parseInt(request.getParameter("vastaus" + i));
                 if (ehdokkaanVastaukset.get(i) != v) {
                     ehdokkaanVastaukset.set(i, v);
                 }
@@ -66,21 +66,39 @@ public class ETallennus extends HttpServlet {
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
             EntityManager em = emf.createEntityManager();
 
-            for (int i = 1; i <= kaikkiKysymykset.size(); i++) {
+            if (request.getAttribute("muokataanko") == true) {
+                for (int i = 1; i <= ehdokkaanVastaukset.size()-1; i++) {
 
-                // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
-                VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
+                    VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
+                    
+                    Vastaukset vastaus = em.find(Vastaukset.class, vastauspk);
+               
+                    em.getTransaction().begin();
+                    vastaus.setVastaus(ehdokkaanVastaukset.get(i));
+                    em.getTransaction().commit();
 
-                // Vastaukset vastaus = new Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK);
-                Vastaukset vastaus = new Vastaukset(kommenttiLista.get(i), ehdokkaanVastaukset.get(i), vastauspk);
+                }
+                tuloste += "Vastauksesi on päivitetty onnistuneesti!";
 
-                em.getTransaction().begin();
-                em.persist(vastaus);
-                em.getTransaction().commit();
+            } else {
+                for (int i = 1; i <= kaikkiKysymykset.size(); i++) {
+
+
+                    // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
+                    VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
+
+                    // Vastaukset vastaus = new Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK);
+                    Vastaukset vastaus = new Vastaukset(kommenttiLista.get(i), ehdokkaanVastaukset.get(i), vastauspk);
+
+                    em.getTransaction().begin();
+                    em.persist(vastaus);
+                    em.getTransaction().commit();
+                    
+                }
+                tuloste += "Vastauksesi on tallennettu onnistuneesti!";
             }
-
             em.close();
-            tuloste += "Vastauksesi on tallennettu onnistuneesti!";
+
 
         } catch (Exception e) {
             tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti! " + e;

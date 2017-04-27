@@ -38,6 +38,8 @@ public class VMuokkaus extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
+ 
+        boolean muokataanko=true;
 
         // Hae tietokanta-yhteys contextista
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
@@ -48,14 +50,15 @@ public class VMuokkaus extends HttpServlet {
                 "SELECT v.vastaus FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
         q.setParameter(1, ehdokas_id);
         List<Integer> ehdokkaanVastaukset = q.getResultList();
+        ehdokkaanVastaukset.add(0,null);
 
         //hae kaikki kysymykset
         q = em.createQuery(
                 "SELECT k FROM Kysymykset k");
         List<Kysymykset> kaikkiKysymykset = q.getResultList();
-
-
+        
         request.setAttribute("ehdokas_id", ehdokas_id);
+        request.setAttribute("muokataanko", muokataanko);
         request.setAttribute("ehdokkaanVastaukset", ehdokkaanVastaukset);
         request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
         request.getRequestDispatcher("/EListaus.jsp")

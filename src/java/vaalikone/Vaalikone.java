@@ -50,6 +50,7 @@ public class Vaalikone extends HttpServlet {
             throws ServletException, IOException {
 
         int kysymys_id;
+  
 
         //Jos etusivun Ehdokas buttonia on klikattu
         if (request.getParameter("haeEhdokas") != null) {
@@ -204,6 +205,7 @@ public class Vaalikone extends HttpServlet {
 
                     // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokas_id", ehdokas_id);
+
                     request.setAttribute("kommentti", ehdokas.getKommenttiLista());
                     request.setAttribute("ehdokkaanVastaukset", ehdokas.getVastausLista());
                     request.setAttribute("kaikkiKysymykset", haeKysymykset(em));

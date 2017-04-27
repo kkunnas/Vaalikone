@@ -31,7 +31,6 @@
             <div id="muokkaaminen">
                 <div id="kysymysvastaus">
                 Kysymys <%= i%>: <%= kaikkiKysymykset.get(i - 1).getKysymys()%><br>
-             <!--   Vastauksesi: <b><%= ehdokkaanVastaukset.get(i)%></b>-->
             </div>
            
                 
@@ -42,9 +41,7 @@
                 <label>4</label><input type="radio" name="vastaus<%=  i%>" value="4" <% if (vastaus ==4){ out.println("checked='checked'");}%>/>
                 <label>5</label><input type="radio" name="vastaus<%=  i%>" value="5" <% if (vastaus ==5){ out.println("checked='checked'");}%>/>
 
-           <%              
-               
-                    
+           <%                                  
                 }%>
             <input id="submitnappi" type="submit" name="laheta" value="Lähetä" />
             </form>
@@ -56,7 +53,6 @@
 
                 
             <%
-
                 if (request.getParameter("laheta") != null) {
                     
                     request.getRequestDispatcher("/ETallennus")
