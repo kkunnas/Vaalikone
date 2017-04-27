@@ -39,12 +39,12 @@ public class ETallennus extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String tuloste;
-       
-        tuloste = " <html> "
+
+        tuloste = "<html> "
                 + "<head>"
                 + "<link href='style.css' rel='stylesheet' type='text/css'>"
                 + "</head>"
-                + " <body>"
+                + "<body>"
                 + "<div id='container'>"
                 + "<img id='headerimg' src='Logo.png' width='720' />"
                 + "<div class='kysymys'>"
@@ -53,9 +53,9 @@ public class ETallennus extends HttpServlet {
             int ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
             List<Integer> ehdokkaanVastaukset = (List<Integer>) request.getAttribute("ehdokkaanVastaukset");
             List<String> kommenttiLista = (List<String>) request.getAttribute("kommentti");
-            
+
             List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
-            
+
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
             EntityManager em = emf.createEntityManager();
 
@@ -80,6 +80,8 @@ public class ETallennus extends HttpServlet {
 
         } finally {
             tuloste += "</h1>"
+                    + "Voit sulkea tämän välilehden"
+                    + "<a href ='index.html'> Palaa etusivulle"
                     + "</div>"
                     + "</div>"
                     + "</body>"

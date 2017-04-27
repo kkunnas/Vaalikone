@@ -11,13 +11,12 @@ package vaalikone;
  * @param <E>
  * @param <F>
  */
-public class Tuple<E,F> {
+public class Tuple<E, F> {
 
     /**
      *
      */
     public E ehdokasId;
-
     /**
      *
      */
@@ -29,8 +28,7 @@ public class Tuple<E,F> {
      * @param f
      */
     public Tuple(E e, F f) {
-        this.ehdokasId=e;
-        this.pisteet=f;
+        this.ehdokasId = e;
+        this.pisteet = f;
     }
-    
 }

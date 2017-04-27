@@ -16,8 +16,9 @@ import java.util.logging.Logger;
  * @author karoliina1506
  */
 public class Ehdokas implements Serializable {
+
     private final List<Integer> EVastaus = new ArrayList<>(20);
- private final List<String> EKommentti = new ArrayList<>(20);
+    private final List<String> EKommentti = new ArrayList<>(20);
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
 
     /**
@@ -45,7 +46,8 @@ public class Ehdokas implements Serializable {
      * Hae yksittäinen ehdokkaan EVastaus kysymykseen
      *
      * @param index kysymyksen numero
-     * @return Yksittäinen integer-muotoinen EVastaus ehdokkaan EVastaus-listasta
+     * @return Yksittäinen integer-muotoinen EVastaus ehdokkaan
+     * EVastaus-listasta
      */
     public Integer getVastaus(int index) {
         return this.EVastaus.get(index);
@@ -60,6 +62,7 @@ public class Ehdokas implements Serializable {
     public void addVastaus(Integer index, Integer vastaus) {
         this.EVastaus.set(index, vastaus);
     }
+
     /**
      *
      * @return String-lista ehdokkaan kommenteista
@@ -67,8 +70,8 @@ public class Ehdokas implements Serializable {
     public List<String> getKommenttiLista() {
         return this.EKommentti;
     }
-    
-        /**
+
+    /**
      * Hae yksittäinen ehdokkaan EKommentti kysymykseen
      *
      * @param index kysymyksen numero

@@ -12,16 +12,16 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-            <% 
-                if (session.getAttribute("admin") != "admin" ) {
-                    request.getRequestDispatcher("AKirjautuminen.jsp")
-                            .forward(request, response);
-                }
-            %>
+        <%
+            if (session.getAttribute("admin") != "admin") {
+                request.getRequestDispatcher("AKirjautuminen.jsp")
+                        .forward(request, response);
+            }
+        %>
 
 
         <div id="container">
- 
+
             <img id="headerimg" src="Logo.png" width="720" />
             <div class="kysymys">
                 <h1>Ylläpito</h1>
@@ -35,7 +35,7 @@
 
             <h3><a href="">Ehdokkaan vastausten poisto</a></h3>
             <h3><a href="KMuokkaus.jsp">Kysymysten muokkaaminen</h3>
-            <small>Kirjaudu ulos</small>
+            <small><a href="index.html">Kirjaudu ulos</a></small>
 
         </div>
     </body>

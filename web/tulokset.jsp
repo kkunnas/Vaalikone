@@ -39,7 +39,7 @@
             %>
 
             <h2>Numero: <%= seParasEhdokas.getEhdokasId()%></h2>
-            <h3>Sinulle <%= jarjestysnumero+1 %>. paras ehdokas</h3>
+            <h3>Sinulle <%= jarjestysnumero + 1%>. paras ehdokas</h3>
             <h3>Yhteensopivuus: <%= prosentit%>%</h3>
             <ul>
                 <li><b>Nimi:</b><%= seParasEhdokas.getEtunimi()%> <%= seParasEhdokas.getSukunimi()%></li>

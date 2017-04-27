@@ -1,6 +1,5 @@
 package vaalikone;
 
-
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -13,7 +12,6 @@ import javax.servlet.ServletContextListener;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * Web application lifecycle listener.
  *
@@ -27,11 +25,11 @@ public class ServletListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        
+
         EntityManagerFactory emf =
-            createEntityManagerFactory("Vaalikone5PU");
+                createEntityManagerFactory("Vaalikone5PU");
         sce.getServletContext().setAttribute("emf", emf);
-        
+
         Loki.init();
 
     }
@@ -43,8 +41,7 @@ public class ServletListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         EntityManagerFactory emf =
-            (EntityManagerFactory)sce.getServletContext().getAttribute("emf");
+                (EntityManagerFactory) sce.getServletContext().getAttribute("emf");
         emf.close();
     }
-    
 }

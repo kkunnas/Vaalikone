@@ -16,16 +16,16 @@ import java.util.logging.SimpleFormatter;
  * @author Jonne
  */
 public class Loki {
-    
+
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
     private static FileHandler fh = null;
-    
+
     /**
-     * Luo uusi java logger-instanssi 
+     * Luo uusi java logger-instanssi
      */
-    public static void init(){
+    public static void init() {
         try {
-            fh=new FileHandler("vaalikoneLoki.log", false);
+            fh = new FileHandler("vaalikoneLoki.log", false);
         } catch (SecurityException | IOException e) {
             e.printStackTrace();
         }

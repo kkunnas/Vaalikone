@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
  */
 @Embeddable
 public class VastauksetPK implements Serializable {
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "EHDOKAS_ID")
@@ -101,5 +102,4 @@ public class VastauksetPK implements Serializable {
         return "persist.VastauksetPK[ ehdokasId=" + ehdokasId + ", kysymysId=" + kysymysId + " ]";
     }
     private static final Logger LOG = Logger.getLogger(VastauksetPK.class.getName());
-    
 }

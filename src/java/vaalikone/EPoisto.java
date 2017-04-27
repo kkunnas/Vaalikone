@@ -6,10 +6,14 @@ package vaalikone;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.persistence.Query;
+import persist.Vastaukset;
 
 /**
  *
@@ -31,8 +35,53 @@ public class EPoisto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        
+
+        //Näytettävän tulosteen alustus
+        String tuloste;
+
+        tuloste = "<html> "
+                + "<head>"
+                + "<link href='style.css' rel='stylesheet' type='text/css'>"
+                + "</head>"
+                + "<body>"
+                + "<div id='container'>"
+                + "<img id='headerimg' src='Logo.png' width='720' />"
+                + "<div class='kysymys'>"
+                + "<h1>";
+
+        try {
+            //Haetaan annettu ehdokasID
+            int id = Integer.parseInt(request.getParameter("ehdokasID"));
+
+            //Alustetaan EntityManager   
+            EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+            EntityManager em = emf.createEntityManager();
+            //Suoritetaan query, jolla poistetaan ID:tä vastaavat vastaukset.  
+            em.getTransaction().begin();
+            Query query = em.createQuery("DELETE FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId =:p");
+            int deleteID = query.setParameter("p", id).executeUpdate();
+            em.getTransaction().commit();
+            //Lopuksi suljetaan yhteys
+            em.close();
+
+            tuloste += "Ehdokkaan vastaukset on poistettu onnistuneesti!";
+        } catch (Exception e) {
+            tuloste += "Jotain meni vikaan, "
+                    + "ehdokkaan vastauksia ei poistettu onnistuneesti!";
+
+        } finally {
+            //Viimeistellään näytettävä tuloste ja tulostetaan
+            tuloste += "</h1>"
+                    + "Voit sulkea tämän välilehden"
+                    + "<a href ='index.html'> Palaa etusivulle"
+                    + "</div>"
+                    + "</div>"
+                    + "</body>"
+                    + "</html>";
+
+            out.println(tuloste);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

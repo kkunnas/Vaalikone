@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Jonne
  */
 @Entity
-@Table(name = "VASTAUKSET", schema="APP")
+@Table(name = "VASTAUKSET", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Vastaukset.findAll", query = "SELECT v FROM Vastaukset v"),
@@ -30,8 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Vastaukset.findByVastaus", query = "SELECT v FROM Vastaukset v WHERE v.vastaus = :vastaus"),
     @NamedQuery(name = "Vastaukset.findByKommentti", query = "SELECT v FROM Vastaukset v WHERE v.kommentti = :kommentti")})
 public class Vastaukset implements Serializable {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
@@ -65,12 +65,12 @@ public class Vastaukset implements Serializable {
     public Vastaukset(int ehdokasId, int kysymysId) {
         this.vastauksetPK = new VastauksetPK(ehdokasId, kysymysId);
     }
-    
+
     /**
-     * 
+     *
      * @param kommentti
      * @param vastaus
-     * @param vastauksetPK 
+     * @param vastauksetPK
      */
     public Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK) {
         this.vastauksetPK = vastauksetPK;
@@ -148,5 +148,4 @@ public class Vastaukset implements Serializable {
         return "persist.Vastaukset[ vastauksetPK=" + vastauksetPK + " ]";
     }
     private static final Logger LOG = Logger.getLogger(Vastaukset.class.getName());
-    
 }

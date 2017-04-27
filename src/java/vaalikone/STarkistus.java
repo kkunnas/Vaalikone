@@ -35,23 +35,24 @@ public class STarkistus extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String salasana = request.getParameter("salasana");
-        String tunnus = request.getParameter("kayttajatunnus");
-        String tuloste = null;
-
+        //Haetaan annettu salasana ja käyttäjätunnus
+        final String salasana = request.getParameter("salasana");
+        final String tunnus = request.getParameter("kayttajatunnus");
+        String tuloste;
 
         if (crypt(salasana).equals(crypt("admin")) && tunnus.equals("admin")) {
-            
+
             HttpSession session = request.getSession();
-            session.setAttribute("admin","admin");
+            session.setAttribute("admin", "admin");
             request.getRequestDispatcher("Admin.jsp")
                     .forward(request, response);
         } else {
-            tuloste = " <html> "
+            //Näytettävä tuloste virheen tapahtuessa
+            tuloste = "<html> "
                     + "<head>"
                     + "<link href='style.css' rel='stylesheet' type='text/css'>"
                     + "</head>"
-                    + " <body>"
+                    + "<body>"
                     + "<div id='container'>"
                     + "<img id='headerimg' src='Logo.png' width='720' />"
                     + "<div class='kysymys'>"
@@ -61,10 +62,12 @@ public class STarkistus extends HttpServlet {
                     + "</div>"
                     + "</body>"
                     + "</html>";
+
+            out.println(tuloste);
         }
-        out.println(tuloste);
 
     }
+//MD5 tiivisteen luominen annetusta salasanasta
 
     public String crypt(String str) {
         if (str == null || str.length() == 0) {

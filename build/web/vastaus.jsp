@@ -25,7 +25,7 @@
             <%
                 @SuppressWarnings("unchecked")
                 List<Kysymykset> kysymykset = (List<Kysymykset>) request.getAttribute("kysymykset");
-     for (Kysymykset kysymys : kysymykset) {%>
+                for (Kysymykset kysymys : kysymykset) {%>
 
             <div class="kysymys">
                 <%= kysymys.getKysymysId()%> / 19 <br>
@@ -41,7 +41,7 @@
                 <input onclick="history.go(-1);
                         return true" type="button" id="seuraavanappi" value="Edellinen" />
                 <input type="submit" id="seuraavanappi" value="Seuraava" />
-                
+
             </form>
             <div class="kysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>
             <%

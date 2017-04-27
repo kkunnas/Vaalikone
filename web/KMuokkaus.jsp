@@ -94,17 +94,17 @@
                     try {
                         String id = request.getParameter("poistaid");
                         int i = Integer.parseInt(id);
-                        
+
                         Kysymykset kys = em.find(Kysymykset.class, i);
                         em.getTransaction().begin();
                         em.remove(kys);
                         em.getTransaction().commit();
-                        
+
                         response.setHeader("Refresh", "0; http://localhost:8080/vaalikone/KMuokkaus.jsp");
                     } catch (Exception e) {
             %> Jokin meni vikaan, tarkista id. <%                                }
 
-                            }
+                }
             %>
         </div>
     </body>

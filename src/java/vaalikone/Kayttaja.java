@@ -100,14 +100,13 @@ public class Kayttaja implements Serializable {
          *  Collections.reverseOrder kääntää järjestyksen toisin päin
          */
         Collections.sort(this.pisteet, Collections.reverseOrder(comparator));
-        
+
 //        this.pisteet.stream().forEach((tpl) -> {
 //            logger.log(Level.INFO, "Ehdokas ID={0} pisteet={1}", new Object[]{tpl.ehdokasId, tpl.pisteet});
 //        });
 
         return this.pisteet;
     }
-
     //Tuplen järjestämiseen tarvittavan comparatorin muodostaminen
     //lähde: http://stackoverflow.com/questions/5690537/sorting-a-tuple-based-on-one-of-the-fields
     //Comparator<Tuple<Integer, Integer>> comparator = (Tuple<Integer, Integer> o1, Tuple<Integer, Integer> o2) -> o1.pisteet.compareTo(o2.pisteet);
@@ -117,5 +116,4 @@ public class Kayttaja implements Serializable {
             return o1.pisteet.compareTo(o2.pisteet);
         }
     };
-
 }

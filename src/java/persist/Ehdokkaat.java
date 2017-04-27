@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Jonne
  */
 @Entity
-@Table(name = "EHDOKKAAT", schema="APP")
+@Table(name = "EHDOKKAAT", schema = "APP")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Ehdokkaat.findAll", query = "SELECT e FROM Ehdokkaat e"),
@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ehdokkaat.findByMitaAsioitaHaluatEdistaa", query = "SELECT e FROM Ehdokkaat e WHERE e.mitaAsioitaHaluatEdistaa = :mitaAsioitaHaluatEdistaa"),
     @NamedQuery(name = "Ehdokkaat.findByAmmatti", query = "SELECT e FROM Ehdokkaat e WHERE e.ammatti = :ammatti")})
 public class Ehdokkaat implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -247,5 +248,4 @@ public class Ehdokkaat implements Serializable {
         return "persist.Ehdokkaat[ ehdokasId=" + ehdokasId + " ]";
     }
     private static final Logger LOG = Logger.getLogger(Ehdokkaat.class.getName());
-    
 }

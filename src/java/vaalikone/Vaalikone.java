@@ -200,7 +200,7 @@ public class Vaalikone extends HttpServlet {
                 } else {
 
                     // Haetaan kaikki kysymykset tietokannasta
-                    
+
 
                     // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokas_id", ehdokas_id);

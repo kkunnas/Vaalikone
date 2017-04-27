@@ -33,13 +33,13 @@ public class HaeEhdokas extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
 
         // Hae tietokanta-yhteys contextista
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         EntityManager em = emf.createEntityManager();
-        
+
         Query qId = em.createQuery(
                 "SELECT e.ehdokasId FROM Ehdokkaat e");
         List<Integer> ehdokasIdList = qId.getResultList();
