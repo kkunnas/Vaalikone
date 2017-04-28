@@ -24,10 +24,10 @@ public class Ehdokas implements Serializable {
     /**
      * Ehdokas-olioon tallennetaan vaalikoneen käyttäjän tietoja.
      */
-    public Ehdokas() {
+    public Ehdokas(int listanKoko) {
 
         //täytelläänhän listat valmiiksi
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < listanKoko; i++) {
             this.EVastaus.add(0);
             this.EKommentti.add("");
         }
