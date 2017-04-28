@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import persist.Vastaukset;
 
 /**
@@ -35,51 +36,65 @@ public class HaeEhdokas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
+        HttpSession session = request.getSession();
 
-        // Hae tietokanta-yhteys contextista
-        EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
-        EntityManager em = emf.createEntityManager();
+        if (session.getAttribute("admin") != "admin") {
+            request.getRequestDispatcher("AKirjautuminen.jsp")
+                    .forward(request, response);
+        }
 
-        Query qId = em.createQuery(
-                "SELECT e.ehdokasId FROM Ehdokkaat e");
-        List<Integer> ehdokasIdList = qId.getResultList();
+        try {
+            int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
 
+            // Hae tietokanta-yhteys contextista
+            EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+            EntityManager em = emf.createEntityManager();
 
-        for (int i = 0; i < ehdokasIdList.size(); i++) {
-            if (ehdokasIdList.get(i).equals(ehdokas_id)) {
-
-                //hae listaan ehdokkaiden ID:t vastaukset taulusta
-                Query qV = em.createQuery(
-                        "SELECT v.vastauksetPK.ehdokasId FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
-                qV.setParameter(1, ehdokas_id);
-                List<Integer> vastausList = qV.getResultList();
+            Query qId = em.createQuery(
+                    "SELECT e.ehdokasId FROM Ehdokkaat e");
+            List<Integer> ehdokasIdList = qId.getResultList();
 
 
-                request.setAttribute("ehdokas_id", ehdokas_id);
+            for (int i = 0; i < ehdokasIdList.size(); i++) {
+                if (ehdokasIdList.get(i).equals(ehdokas_id)) {
 
-                if (request.getParameter("haeEhdokas") != null) {
-                    while (vastausList.size() > ehdokas_id) {
-                        //Tutkitaan vastaako vastaukset taulun ehdokasId parametrinä tuotua ehdokas_id:tä
-                        if (vastausList.get(i).equals(ehdokas_id)) {
-                            //Jos vastaa, siirrytään muokkaamaan tietokantaan tallennettuja tietoja
-                            request.getRequestDispatcher("/VMuokkaus")
-                                    .forward(request, response);
+                    //hae listaan ehdokkaiden ID:t vastaukset taulusta
+                    Query qV = em.createQuery(
+                            "SELECT v.vastauksetPK.ehdokasId FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
+                    qV.setParameter(1, ehdokas_id);
+                    List<Integer> vastausList = qV.getResultList();
+
+
+                    request.setAttribute("ehdokas_id", ehdokas_id);
+
+                    if (request.getParameter("haeEhdokas") != null) {
+                        while (vastausList.size() > ehdokas_id) {
+                            //Tutkitaan vastaako vastaukset taulun ehdokasId parametrinä tuotua ehdokas_id:tä
+                            if (vastausList.get(i).equals(ehdokas_id)) {
+                                //Jos vastaa, siirrytään muokkaamaan tietokantaan tallennettuja tietoja
+                                request.getRequestDispatcher("/VMuokkaus")
+                                        .forward(request, response);
+                            }
                         }
+                        request.setAttribute("ehdokas_id", ehdokas_id);
+                        request.getRequestDispatcher("/Vaalikone")
+                                .forward(request, response);
+
+                    } else if (request.getParameter("poistaEhdokas") != null) {
+
+                        request.setAttribute("ehdokas_id", ehdokas_id);
+                        request.getRequestDispatcher("/EPoisto")
+                                .forward(request, response);
                     }
-                    request.setAttribute("ehdokas_id", ehdokas_id);
-                    request.getRequestDispatcher("/Vaalikone")
-                            .forward(request, response);
-                    
-                } else if (request.getParameter("poistaEhdokas") != null) {
 
-                    request.setAttribute("ehdokas_id", ehdokas_id);
-                    request.getRequestDispatcher("/EPoisto")
-                            .forward(request, response);
-
-                } 
-
+                }
             }
+
+        } catch (Exception e) {
+            String error = "Syötä vain yksi kokonaisluku";
+            request.setAttribute("viesti", error);
+            request.getRequestDispatcher("Admin.jsp")
+                    .forward(request, response);
         }
     }
 

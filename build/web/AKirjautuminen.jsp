@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
+
+<% Object error = request.getAttribute("viesti");  %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +28,7 @@
             </div>
 
             <form id="vastausformi" action="STarkistus" method="POST">  
-                Syötä käyttäjätunnus ja salasana</br>
+                <% if (error != null) {out.println(error);%> </br> <%} else {%> Syötä käyttäjätunnus ja salasana</br> <%}%>
                 <input id="kayttajatunnus" type="text" name="kayttajatunnus" placeholder="Käyttäjätunnus">
                 <input id="salasana" type="password" name="salasana" placeholder="Salasana" >
                 <input id="submitnappi" type="submit" name="kirjaudu" value="Kirjaudu">                   

@@ -5,7 +5,6 @@
 package vaalikone;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletException;
@@ -33,37 +32,22 @@ public class STarkistus extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
         //Haetaan annettu salasana ja käyttäjätunnus
         final String salasana = request.getParameter("salasana");
         final String tunnus = request.getParameter("kayttajatunnus");
-        String tuloste;
 
         if (crypt(salasana).equals(crypt("admin")) && tunnus.equals("admin")) {
-
             HttpSession session = request.getSession();
             session.setAttribute("admin", "admin");
             request.getRequestDispatcher("Admin.jsp")
                     .forward(request, response);
         } else {
-            //Näytettävä tuloste virheen tapahtuessa
-            tuloste = "<html> "
-                    + "<head>"
-                    + "<link href='style.css' rel='stylesheet' type='text/css'>"
-                    + "</head>"
-                    + "<body>"
-                    + "<div id='container'>"
-                    + "<img id='headerimg' src='Logo.png' width='720' />"
-                    + "<div class='kysymys'>"
-                    + "<h1>Salasana tai käyttäjätunnus ei kelpaa</h1>"
-                    + "<a href='AKirjautuminen.jsp'>Takaisin</a>"
-                    + "</div>"
-                    + "</div>"
-                    + "</body>"
-                    + "</html>";
-
-            out.println(tuloste);
+            String error;
+            error = "Käyttäjätunnus tai salasana on väärin!";
+            request.setAttribute("viesti", error);
+            request.getRequestDispatcher("AKirjautuminen.jsp")
+                    .forward(request, response);
         }
 
     }

@@ -101,7 +101,7 @@ public class ETallennus extends HttpServlet {
 
 
         } catch (Exception e) {
-            tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti! " + e;
+            tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti! ";
 
         } finally {
             tuloste += "</h1>"

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 import persist.Vastaukset;
 
 /**
@@ -34,20 +35,18 @@ public class EPoisto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("admin") != "admin") {
+            request.getRequestDispatcher("AKirjautuminen.jsp")
+                    .forward(request, response);
+        }
+
+
 
         //Näytettävän tulosteen alustus
-        String tuloste;
-
-        tuloste = "<html> "
-                + "<head>"
-                + "<link href='style.css' rel='stylesheet' type='text/css'>"
-                + "</head>"
-                + "<body>"
-                + "<div id='container'>"
-                + "<img id='headerimg' src='Logo.png' width='720' />"
-                + "<div class='kysymys'>"
-                + "<h1>";
+        String viesti = null;
 
         try {
             //Haetaan annettu ehdokasID
@@ -64,22 +63,17 @@ public class EPoisto extends HttpServlet {
             //Lopuksi suljetaan yhteys
             em.close();
 
-            tuloste += "Ehdokkaan vastaukset on poistettu onnistuneesti!";
+            viesti = "Ehdokkaan vastaukset on poistettu onnistuneesti!";
         } catch (Exception e) {
-            tuloste += "Jotain meni vikaan, "
-                    + "ehdokkaan vastauksia ei poistettu onnistuneesti!";
+            viesti = "Jotain meni vikaan, "
+                    + "ehdokkaan vastauksia ei poistettu onnistuneesti! "
+                    + e;
 
         } finally {
-            //Viimeistellään näytettävä tuloste ja tulostetaan
-            tuloste += "</h1>"
-                    + "Voit sulkea tämän välilehden"
-                    + "<a href ='index.html'> Palaa etusivulle"
-                    + "</div>"
-                    + "</div>"
-                    + "</body>"
-                    + "</html>";
 
-            out.println(tuloste);
+            request.setAttribute("viesti", viesti);
+            request.getRequestDispatcher("Admin.jsp")
+                    .forward(request, response);
         }
 
     }
