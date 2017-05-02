@@ -23,7 +23,7 @@
     EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
     EntityManager em = emf.createEntityManager();
     Query qE = em.createQuery(
-            "SELECT e FROM Ehdokkaat e");
+            "SELECT e FROM Ehdokkaat e ORDER BY e.ehdokasId");
     List<Ehdokkaat> ehdokasList = qE.getResultList();
 %>
 

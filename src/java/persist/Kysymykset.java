@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,7 +36,6 @@ public class Kysymykset implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "KYSYMYS_ID")
-    @GeneratedValue
     private Integer kysymysId;
     @Size(max = 100)
     @Column(name = "KYSYMYS")
