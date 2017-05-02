@@ -50,6 +50,7 @@
 
             <form>
                 <b>Lisää uusi:</b></br>
+                Äänestysnumero:</br><input type="number" size ="3" name="id"/></br>
                 Etunimi:</br><input type="text" maxlength="200" size="70" name="etunimi"/></br>
                 Sukunimi:</br><input type="text" maxlength="200" size="70" name="sukunimi"/></br>
                 Puolue:</br><input type="text" maxlength="200" size="70" name="puolue"/></br>
@@ -64,15 +65,8 @@
                 if (request.getParameter("lisaa") != null) {
                     try {
                         // Haetaan tekstikentistä ehdokkaalle asetetut arvot
-                        //String id = request.getParameter("id");
-                        //int i = Integer.parseInt(id);
-                        int i = 1;
-                        for (int j = 0; j < kaikkiEhdokkaat.size(); j++) {
-                            if (kaikkiEhdokkaat.get(i - 1).getEhdokasId() == i) {
-                                i++;
-                                out.println(i);
-                            }
-                        }
+                        String id = request.getParameter("id");
+                        int i = Integer.parseInt(id);
                         String etunimi = request.getParameter("etunimi");
                         String sukunimi = request.getParameter("sukunimi");
                         String puolue = request.getParameter("puolue");
@@ -107,7 +101,7 @@
         </form></br>
         <form>
             <b>Poista:</b></br>
-            Id: <input type="number" size ="3" name="poistaid"/>
+            Äänestysnumero: <input type="number" size ="3" name="poistaid"/>
             <input type="submit" name="poista" value="Poista" />
         </form>
         <%

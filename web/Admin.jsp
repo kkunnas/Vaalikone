@@ -54,7 +54,7 @@
                     <option value="<%=ehdokasList.get(i - 1).getEhdokasId()%>"><%= ehdokasList.get(i - 1).getEhdokasId() + ". " + ehdokasList.get(i - 1).getEtunimi() + " " + ehdokasList.get(i - 1).getSukunimi()%></option>
                     <% }%> 
                 </select><br>
-                <input id="seuraavanappi" type="submit" name="poistaEhdokas" value="Poista" />
+                <input id="seuraavanappi" type="submit" name="poistaEhdokas" value="Poista" onclick="return confirm('Haluatko varmasti poistaa ehdokkaan vastaukset?')"/>
                 <input id="seuraavanappi" type="submit" name="haeEhdokas" value="Hae" />                   
             </form></br>
 

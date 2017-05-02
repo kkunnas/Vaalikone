@@ -38,7 +38,7 @@
             <div class="kysymys">
                 <p>Ehdokkaalle..</p> 
 
-                <%= kysymys.getKysymysId()%> / <%=kaikkiKysymykset.size() %></br>
+                <%= kysymys.getKysymysId()%> / <%=kaikkiKysymykset.size()%></br>
                 <%= kysymys.getKysymys()%>
             </div>
 
@@ -52,7 +52,7 @@
                 Kommentoi vastaustasi<br>
                 <textarea name="kommentti" maxlength="200" rows="4" cols="40"></textarea><br>
                 <input onclick="history.go(-1);
-                        return true" type="button" id="seuraavanappi" value="Edellinen" />
+                return true" type="button" id="seuraavanappi" value="Edellinen" />
                 <input type="submit" id="seuraavanappi" value="Seuraava" />
 
             </form>
