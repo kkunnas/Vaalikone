@@ -31,7 +31,7 @@
                 if (jarjestysnumero > 0) {%>
             <a href="Vaalikone?func=haeEhdokas&numero=<%= jarjestysnumero - 1%>">Edellinen ehdokas</a>&nbsp; 
             <% }
-                if (jarjestysnumero < 18) {%>
+                if (jarjestysnumero < 25) {%>
             <a href="Vaalikone?func=haeEhdokas&numero=<%= jarjestysnumero + 1%>">Seuraavaksi paras ehdokas</a>
             <% }
 

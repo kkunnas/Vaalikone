@@ -32,6 +32,12 @@
     <head>
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
+    <script type="text/javascript">
+    <% if (error != null){    %>
+    var msg = "<%=error%>";
+        alert(msg);
+        <% }%>
+    </script>
     <body>
         <div id="container">
 
@@ -41,14 +47,12 @@
             </div>
 
             <form id="vastausformi" action="HaeEhdokas">
-                <b>Lista Ehdokkaista:</b></br>
+                </br> <b>Lista Ehdokkaista:</b></br>
                 <select name="ehdokas_id">
                     <% for (int i = 1; i <= ehdokasList.size(); i++) {
                     %>
-
                     <option value="<%=ehdokasList.get(i - 1).getEhdokasId()%>"><%= ehdokasList.get(i - 1).getEhdokasId() + ". " + ehdokasList.get(i - 1).getEtunimi() + " " + ehdokasList.get(i - 1).getSukunimi()%></option>
-                    <% }%>
-
+                    <% }%> 
                 </select><br>
                 <input id="seuraavanappi" type="submit" name="poistaEhdokas" value="Poista" />
                 <input id="seuraavanappi" type="submit" name="haeEhdokas" value="Hae" />                   

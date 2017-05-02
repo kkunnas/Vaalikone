@@ -55,24 +55,30 @@ public class ETallennus extends HttpServlet {
             List<String> kommenttiLista = (List<String>) request.getAttribute("kommentti");
             List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
 
-
+            //Tutkitaan vastaako parametrinä saatu vastaus aiemmin listaan tallennettuja vastauksia
             for (int i = 1; i < ehdokkaanVastaukset.size(); i++) {
                 int v = Integer.parseInt(request.getParameter("vastaus" + i));
+                //Jos ei vastaa, korvataan vastaus parametrinä saadulla vastauksesta
                 if (ehdokkaanVastaukset.get(i) != v) {
                     ehdokkaanVastaukset.set(i, v);
                 }
             }
 
+            // Luodaan EntityManager -olio
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
             EntityManager em = emf.createEntityManager();
 
+            //Jos muokataanko -muuttuja on arvoltaan true, päivitetään tietokannassa olevat vastaukset uusilla vastauksilla
             if (request.getAttribute("muokataanko") == true) {
                 for (int i = 1; i <= ehdokkaanVastaukset.size()-1; i++) {
 
+                    //Alustetaan VastauksetPK luokasta olio, jolle annetaan parametrinä ehdokkaan ja kysymyksen id:t
                     VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
                     
+                    //Haetaan Vastaukset entiteettiluokasta ehdokas_id:tä vastaava entiteetti
                     Vastaukset vastaus = em.find(Vastaukset.class, vastauspk);
                
+                    //Suoritetaan tietokannassa olevien vastauksien päivitys
                     em.getTransaction().begin();
                     vastaus.setVastaus(ehdokkaanVastaukset.get(i));
                     em.getTransaction().commit();
@@ -80,9 +86,10 @@ public class ETallennus extends HttpServlet {
                 }
                 tuloste += "Vastauksesi on päivitetty onnistuneesti!";
 
-            } else {
+            } 
+            //Jos ei, lisätään uudet vastaukset tietokantaan
+            else {
                 for (int i = 1; i <= kaikkiKysymykset.size(); i++) {
-
 
                     // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
                     VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);

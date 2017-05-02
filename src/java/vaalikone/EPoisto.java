@@ -43,8 +43,6 @@ public class EPoisto extends HttpServlet {
                     .forward(request, response);
         }
 
-
-
         //Näytettävän tulosteen alustus
         String viesti = null;
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import persist.Vastaukset;
+
 
 /**
  *
@@ -38,6 +38,7 @@ public class HaeEhdokas extends HttpServlet {
 
         HttpSession session = request.getSession();
 
+        //Testaataan onko admin-sessio, jos ei uudelleen ohjataan kirjautumissivulle
         if (session.getAttribute("admin") != "admin") {
             request.getRequestDispatcher("AKirjautuminen.jsp")
                     .forward(request, response);
@@ -50,23 +51,26 @@ public class HaeEhdokas extends HttpServlet {
             EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
             EntityManager em = emf.createEntityManager();
 
+            //Haetaan tietokannasta lista ehdokasId:istä
             Query qId = em.createQuery(
                     "SELECT e.ehdokasId FROM Ehdokkaat e");
             List<Integer> ehdokasIdList = qId.getResultList();
 
-
             for (int i = 0; i < ehdokasIdList.size(); i++) {
+                
+                //Testataan, että parametrina haettu id löytyy tietokannasta
                 if (ehdokasIdList.get(i).equals(ehdokas_id)) {
 
-                    //hae listaan ehdokkaiden ID:t vastaukset taulusta
+                    //Haetaan listaan ehdokkaiden ID:t vastaukset taulusta
                     Query qV = em.createQuery(
                             "SELECT v.vastauksetPK.ehdokasId FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
                     qV.setParameter(1, ehdokas_id);
                     List<Integer> vastausList = qV.getResultList();
 
-
+                    //Lisätään ehdokas_id attribuutiksi
                     request.setAttribute("ehdokas_id", ehdokas_id);
 
+                    //Jos haeEhdokas -painiketta on painettu
                     if (request.getParameter("haeEhdokas") != null) {
                         while (vastausList.size() > ehdokas_id) {
                             //Tutkitaan vastaako vastaukset taulun ehdokasId parametrinä tuotua ehdokas_id:tä
@@ -76,17 +80,17 @@ public class HaeEhdokas extends HttpServlet {
                                         .forward(request, response);
                             }
                         }
+                        //Jos ehdokas ei ole vielä vastannut kysymyksiin, ohjataan vastaamaan
                         request.setAttribute("ehdokas_id", ehdokas_id);
                         request.getRequestDispatcher("/Vaalikone")
                                 .forward(request, response);
 
+                        //Jos poistaEhdokas -painiketta painettu, uudelleen ohjataan vastausten poistoon
                     } else if (request.getParameter("poistaEhdokas") != null) {
-
                         request.setAttribute("ehdokas_id", ehdokas_id);
                         request.getRequestDispatcher("/EPoisto")
                                 .forward(request, response);
                     }
-
                 }
             }
 

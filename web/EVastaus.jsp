@@ -4,6 +4,7 @@
     Author     : karoliina1506
 --%>
 
+<%@page import="javax.persistence.Query"%>
 <%@page import="javax.persistence.EntityManager"%>
 <%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,12 +25,20 @@
 
             <%
                 @SuppressWarnings("unchecked")
+                // Luodaan EntityManager -olio
+                EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+                EntityManager em = emf.createEntityManager();
+
+                // Haetaan kysymykset listaan tietokannasta
+                Query q = em.createQuery(
+                        "SELECT k FROM Kysymykset k ORDER BY k.kysymysId");
+                List<Kysymykset> kaikkiKysymykset = q.getResultList();
                 List<Kysymykset> kysymykset = (List<Kysymykset>) request.getAttribute("kysymykset");
                 for (Kysymykset kysymys : kysymykset) {%>
             <div class="kysymys">
                 <p>Ehdokkaalle..</p> 
 
-                <%= kysymys.getKysymysId()%> / 19 </br>
+                <%= kysymys.getKysymysId()%> / <%=kaikkiKysymykset.size() %></br>
                 <%= kysymys.getKysymys()%>
             </div>
 
@@ -45,7 +54,7 @@
                 <input onclick="history.go(-1);
                         return true" type="button" id="seuraavanappi" value="Edellinen" />
                 <input type="submit" id="seuraavanappi" value="Seuraava" />
-                
+
             </form>
 
             <div class="ekysymys"><small>1=Täysin eri mieltä 2=Osittain eri mieltä 3=En osaa sanoa, 4=Osittain samaa mieltä 5=Täysin samaa mieltä</small></div>

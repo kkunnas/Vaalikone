@@ -4,6 +4,9 @@
     Author     : Jonne
 --%>
 
+<%@page import="javax.persistence.Query"%>
+<%@page import="javax.persistence.EntityManager"%>
+<%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*,vaalikone.Vaalikone,persist.*"%>
 <!doctype html>
@@ -24,11 +27,19 @@
 
             <%
                 @SuppressWarnings("unchecked")
+                        // Luodaan EntityManager -olio
+                EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+                EntityManager em = emf.createEntityManager();
+
+                // Haetaan kysymykset listaan tietokannasta
+                Query q = em.createQuery(
+                        "SELECT k FROM Kysymykset k ORDER BY k.kysymysId");
+                List<Kysymykset> kaikkiKysymykset = q.getResultList();
                 List<Kysymykset> kysymykset = (List<Kysymykset>) request.getAttribute("kysymykset");
                 for (Kysymykset kysymys : kysymykset) {%>
 
             <div class="kysymys">
-                <%= kysymys.getKysymysId()%> / 19 <br>
+                <%= kysymys.getKysymysId()%> / <%=kaikkiKysymykset.size() %><br>
                 <%= kysymys.getKysymys()%>
             </div>
             <form action="Vaalikone" id="vastausformi">

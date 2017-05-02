@@ -5,7 +5,6 @@
 package vaalikone;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,11 +33,9 @@ public class VMuokkaus extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         
         int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));
- 
+        //Asetetaan muokataanko -muuttujan arvoksi true, jotta ETallennuksessa päivitetään tietokannassa olevat tiedot
         boolean muokataanko=true;
 
         // Hae tietokanta-yhteys contextista
@@ -57,6 +54,7 @@ public class VMuokkaus extends HttpServlet {
                 "SELECT k FROM Kysymykset k");
         List<Kysymykset> kaikkiKysymykset = q.getResultList();
         
+        //Asetetaan tarvittavat attribuutit ja uudelleen ohjataan EListaus.jsp
         request.setAttribute("ehdokas_id", ehdokas_id);
         request.setAttribute("muokataanko", muokataanko);
         request.setAttribute("ehdokkaanVastaukset", ehdokkaanVastaukset);

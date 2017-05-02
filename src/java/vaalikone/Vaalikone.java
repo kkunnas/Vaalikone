@@ -49,7 +49,7 @@ public class Vaalikone extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
         // Hae tietokanta-yhteys contextista
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         EntityManager em = emf.createEntityManager();
@@ -61,13 +61,13 @@ public class Vaalikone extends HttpServlet {
             //hae http-sessio ja luo uusi jos vanhaa ei ole vielä olemassa
             HttpSession session = request.getSession(true);
             ehdokas = (Ehdokas) session.getAttribute("e");
-            
+
             //Tallennetaan muuttujaan attribuuttina saatu arvo
             ehdokas_id = (Integer) request.getAttribute("ehdokas_id");
 
             //jos ehdokas-oliota ei löydy sessiosta, luodaan sinne sellainen
             if (ehdokas == null) {
-                ehdokas = new Ehdokas(haeKysymykset(em).size()+1); //Ehdokas luokan rakentaja alustaa listat oikean kokoisiksi
+                ehdokas = new Ehdokas(haeKysymykset(em).size() + 1); //Ehdokas luokan rakentaja alustaa listat oikean kokoisiksi
                 logger.log(Level.FINE, "Luotu uusi ehdokas-olio");
                 session.setAttribute("e", ehdokas);
             }
@@ -82,7 +82,7 @@ public class Vaalikone extends HttpServlet {
 
             //jos käyttäjä-oliota ei löydy sessiosta, luodaan sinne sellainen
             if (usr == null) {
-                usr = new Kayttaja(haeKysymykset(em).size()+1); //Käyttäjä luokan rakentaja alustaa listat oikean kokoisiksi
+                usr = new Kayttaja(haeKysymykset(em).size() + 1); //Käyttäjä luokan rakentaja alustaa listat oikean kokoisiksi
                 logger.log(Level.FINE, "Luotu uusi käyttäjä-olio");
                 session2.setAttribute("usrobj", usr);
             }
@@ -104,8 +104,7 @@ public class Vaalikone extends HttpServlet {
             if (ehdokas != null) {
                 strVastaus = request.getParameter("EVastaus");
                 kommentti = request.getParameter("kommentti");
-            } 
-            //Jos käyttäjä olio ei ole null, hae parametrina tuotu edellisen kysymyksen vastaus
+            } //Jos käyttäjä olio ei ole null, hae parametrina tuotu edellisen kysymyksen vastaus
             else if (usr != null) {
                 strVastaus = request.getParameter("vastaus");
             }
@@ -122,8 +121,7 @@ public class Vaalikone extends HttpServlet {
                     if (ehdokas != null) {
                         ehdokas.addVastaus(kysymys_id, parseInt(strVastaus));
                         ehdokas.addKommentti(kysymys_id, kommentti);
-                    } 
-                    //Jos käyttäjä olio ei ole null, tallenetaan vastaus session käyttäjä-olioon
+                    } //Jos käyttäjä olio ei ole null, tallenetaan vastaus session käyttäjä-olioon
                     else if (usr != null) {
                         usr.addVastaus(kysymys_id, parseInt(strVastaus));
                     }
@@ -144,17 +142,15 @@ public class Vaalikone extends HttpServlet {
                     List<Kysymykset> kysymysList = q.getResultList();
                     request.setAttribute("kysymykset", kysymysList);
 
-                     //Jos ehdokas olio ei ole null, ohjataan ehdokas EVastaus.jsp sivulle vastaamaan kysymyksiin
+                    //Jos ehdokas olio ei ole null, ohjataan ehdokas EVastaus.jsp sivulle vastaamaan kysymyksiin
                     if (ehdokas != null) {
                         request.getRequestDispatcher("/EVastaus.jsp")
                                 .forward(request, response);
-                    } 
-                    //Jos käyttäjä olio ei ole null, ohjataan käyttäjä vastaus.jsp sivulle vastaamaan kysymyksiin
+                    } //Jos käyttäjä olio ei ole null, ohjataan käyttäjä vastaus.jsp sivulle vastaamaan kysymyksiin
                     else if (usr != null) {
                         request.getRequestDispatcher("/vastaus.jsp")
                                 .forward(request, response);
                     }
-
                 } finally {
                     // Sulje tietokantayhteys
                     if (em.getTransaction().isActive()) {
@@ -162,7 +158,6 @@ public class Vaalikone extends HttpServlet {
                     }
                     em.close();
                 }
-
                 //jos kysymykset loppuvat, lasketaan tulos!
             } else {
 
@@ -208,7 +203,7 @@ public class Vaalikone extends HttpServlet {
                 } else {
                     // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokas_id", ehdokas_id);
-                    
+
                     // Ohjataan tiedot vastauksien listaus sivulle
                     request.setAttribute("ehdokas_id", ehdokas_id);
                     request.setAttribute("kommentti", ehdokas.getKommenttiLista()); //kaikki ehdokkaan kommentit Ehdokas-luokan listasta
@@ -218,7 +213,6 @@ public class Vaalikone extends HttpServlet {
                             .forward(request, response);
                 }
             }
-
         }
 
         //jos func-arvo on haeEhdokas, haetaan haluttu henkilö käyttäjälle sopivimmista ehdokkaista
@@ -269,9 +263,9 @@ public class Vaalikone extends HttpServlet {
         }
 
     }
-                    
-    // Haetaan kaikki kysymykset tietokannasta
+
     private List haeKysymykset(EntityManager em) {
+        // Haetaan kaikki kysymykset tietokannasta
         Query q = em.createQuery(
                 "SELECT k FROM Kysymykset k");
         List<Kysymykset> kaikkiKysymykset = q.getResultList();
