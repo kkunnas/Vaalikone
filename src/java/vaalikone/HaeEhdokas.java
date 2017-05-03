@@ -36,13 +36,14 @@ public class HaeEhdokas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        // TODO: Admin sessio ei toimi tällä sivulla!!
+        /* HttpSession session = request.getSession();
 
         //Testaataan onko admin-sessio, jos ei uudelleen ohjataan kirjautumissivulle
         if (session.getAttribute("admin") != "admin") {
             request.getRequestDispatcher("AKirjautuminen.jsp")
                     .forward(request, response);
-        }
+        }*/
 
         try {
             int ehdokas_id = Integer.parseInt(request.getParameter("ehdokas_id"));

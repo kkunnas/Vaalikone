@@ -15,7 +15,7 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <%
+        <% //Tarkistetaan onko sessio voimassa
             if (request.getParameter("logout") != null) {
                         session.setAttribute("admin", null);
             }

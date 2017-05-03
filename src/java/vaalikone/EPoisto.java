@@ -60,7 +60,7 @@ public class EPoisto extends HttpServlet {
             em.getTransaction().commit();
             //Lopuksi suljetaan yhteys
             em.close();
-
+            //Viesti määräytyy sen mukaan onnistuiko poisto vai ei
             viesti = "Ehdokkaan vastaukset on poistettu onnistuneesti!";
         } catch (Exception e) {
             viesti = "Jotain meni vikaan, "
@@ -68,7 +68,7 @@ public class EPoisto extends HttpServlet {
                     + e;
 
         } finally {
-
+            //Asetetaan viesti atribuutiksi ja siirrytään takaisin admin sivulle.
             request.setAttribute("viesti", viesti);
             request.getRequestDispatcher("Admin.jsp")
                     .forward(request, response);

@@ -37,7 +37,7 @@ public class ETallennus extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        //Valmistellaan näytettävä sivu
         String tuloste;
 
         tuloste = "<html> "
@@ -70,14 +70,14 @@ public class ETallennus extends HttpServlet {
 
             //Jos muokataanko -muuttuja on arvoltaan true, päivitetään tietokannassa olevat vastaukset uusilla vastauksilla
             if (request.getAttribute("muokataanko") == true) {
-                for (int i = 1; i <= ehdokkaanVastaukset.size()-1; i++) {
+                for (int i = 1; i <= ehdokkaanVastaukset.size() - 1; i++) {
 
                     //Alustetaan VastauksetPK luokasta olio, jolle annetaan parametrinä ehdokkaan ja kysymyksen id:t
                     VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
-                    
+
                     //Haetaan Vastaukset entiteettiluokasta ehdokas_id:tä vastaava entiteetti
                     Vastaukset vastaus = em.find(Vastaukset.class, vastauspk);
-               
+
                     //Suoritetaan tietokannassa olevien vastauksien päivitys
                     em.getTransaction().begin();
                     vastaus.setVastaus(ehdokkaanVastaukset.get(i));
@@ -86,35 +86,33 @@ public class ETallennus extends HttpServlet {
                 }
                 tuloste += "Vastauksesi on päivitetty onnistuneesti!";
 
-            } 
-            //Jos ei, lisätään uudet vastaukset tietokantaan
+            } //Jos ei, lisätään uudet vastaukset tietokantaan
             else {
                 for (int i = 1; i <= kaikkiKysymykset.size(); i++) {
 
                     // VastauksetPK vastauspk = new VastauksetPK(ehdokasID; kysymysID;
                     VastauksetPK vastauspk = new VastauksetPK(ehdokas_id, i);
-
                     // Vastaukset vastaus = new Vastaukset(String kommentti, int vastaus, VastauksetPK vastauksetPK);
                     Vastaukset vastaus = new Vastaukset(kommenttiLista.get(i), ehdokkaanVastaukset.get(i), vastauspk);
-
+                    // Tallennetaan olio tietokantaan.
                     em.getTransaction().begin();
                     em.persist(vastaus);
                     em.getTransaction().commit();
-                    
+
                 }
-                tuloste += "Vastauksesi on tallennettu onnistuneesti!";
+                tuloste += "Vastauksesi on tallennettu onnistuneesti!"
+                        + "</h1>"
+                        + "Voit sulkea tämän välilehden";
             }
             em.close();
 
 
         } catch (Exception e) {
-            tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti! ";
+            tuloste += "Jotain meni vikaan, vastauksia ei tallennettu onnistuneesti!"
+                    + "</h1>";
 
         } finally {
-            tuloste += "</h1>"
-                    + "Voit sulkea tämän välilehden"
-                    + "<a href ='index.html'> Palaa etusivulle"
-                    + "</div>"
+            tuloste += "</div>"
                     + "</div>"
                     + "</body>"
                     + "</html>";
